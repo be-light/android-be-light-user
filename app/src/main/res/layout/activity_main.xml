@@ -7,10 +7,25 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/hello_btn"
+        android:id="@+id/register_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!!!" />
+        android:text="등록페이지로" />
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인페이지로" />
+    <Button
+        android:id="@+id/profile_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내프로필 보기" />
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지우기" />
 
     
 </LinearLayout>
