@@ -26,6 +26,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="지우기" />
+    <Button
+        android:id="@+id/recipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주문등록" />
+    <Button
+        android:id="@+id/recipt_mgt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주문관리" />
 
     
 </LinearLayout>
