@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.recipt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,DeleteUserActivity.class);
+                Intent i = new Intent(MainActivity.this,ReciptRegisterActivity.class);
                 startActivity(i);
             }
         });

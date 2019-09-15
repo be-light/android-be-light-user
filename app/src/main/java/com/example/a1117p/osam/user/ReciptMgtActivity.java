@@ -19,13 +19,13 @@ public class ReciptMgtActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_host_mgt);
+        setContentView(R.layout.activity_recipt_mgt);
         listView = findViewById(R.id.hosts);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    final String html = RequestHttpURLConnection.request("http://15.164.220.47/api/user/order", null, true, "GET");
+                    final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/user/order", null, true, "GET");
                     JSONParser jsonParser = new JSONParser();
                     JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
                     adapter = new ListViewAdapter(jsonArray);

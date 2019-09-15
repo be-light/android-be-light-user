@@ -55,8 +55,8 @@ public class ReciptClickDialog extends Dialog {
                     public void run() {
                         final HashMap params = new HashMap<String, String>();
 
-                        params.put("idx", item.getReciptNumber());
-                        final String html = RequestHttpURLConnection.request("http://15.164.220.47/api/host?_method=DELETE", params,true, "POST");
+                        params.put("reciptNumber", item.getReciptNumber());
+                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/user/order?_method=DELETE", params,true, "POST");
                         activity.runOnUiThread(new Runnable() {
 
                             @Override

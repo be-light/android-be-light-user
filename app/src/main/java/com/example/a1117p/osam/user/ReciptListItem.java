@@ -12,10 +12,10 @@ public class ReciptListItem implements Parcelable {
         hostaddress = (String)object.get("hostaddress");
         hostPostalCode = (String)object.get("hostPostalCode");
         hostName = (String)object.get("hostName");
-        reciptNumber = (String)object.get("reciptNumber");
-        checkin = (String)object.get("checkin");
-        checkOut = (String)object.get("checkOut");
-        paid = (String)object.get("paid");
+        reciptNumber = String.valueOf(object.get("reciptNumber"));
+        checkin = ((String)object.get("checkin")).split("T")[0];
+        checkOut = ((String)object.get("checkOut")).split("T")[0];
+        paid = String.valueOf(object.get("paid"));
         hostUserPhoneNumber = (String)object.get("hostUserPhoneNumber");
     }
 

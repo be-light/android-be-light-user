@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.a1117p.osam.host.HostRegisterActivity"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,12 +11,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="호스트명"/>
+            android:text="호스트인덱"/>
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/hostname"/>
+            android:id="@+id/hostidx"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,12 +25,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전화번호"/>
+            android:text="체크인"/>
 
-        <EditText
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tel"/>
+            android:id="@+id/checkIn"
+            android:text="체크인 날짜"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,26 +40,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주소"/>
+            android:text="체크아웃"/>
 
-        <EditText
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/address"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="우편번호"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/postalcode"/>
+            android:id="@+id/checkOut"
+            android:text="체크아웃 날짜"/>
     </LinearLayout>
 
     <Button

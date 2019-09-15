@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new Thread(new Runnable(){
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("http://15.164.220.47/api/auth/register",params,"POST");
+                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/auth/register",params,"POST");
                         runOnUiThread(new Runnable(){
                             
                             @Override

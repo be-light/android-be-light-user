@@ -31,7 +31,7 @@ public class DeleteUserActivity extends AppCompatActivity {
                 new Thread(new Runnable(){
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("http://15.164.220.47/api/user?_method=DELETE",params,true,"POST");
+                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/user?_method=DELETE",params,true,"POST");
                         runOnUiThread(new Runnable(){
                             
                             @Override

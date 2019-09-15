@@ -34,7 +34,7 @@ public class ReciptRegisterActivity extends AppCompatActivity {
                 DatePickerDialog dialog = new DatePickerDialog(ReciptRegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                        checkin.setText(String.format("%04d-%02d-%02d", year, month, date));
+                        checkin.setText(String.format("%04d-%02d-%02d", year, month+1, date));
                     }
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 
@@ -52,7 +52,7 @@ public class ReciptRegisterActivity extends AppCompatActivity {
                 DatePickerDialog dialog = new DatePickerDialog(ReciptRegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                        checkout.setText(String.format("%04d-%02d-%02d", year, month, date));
+                        checkout.setText(String.format("%04d-%02d-%02d", year, month+1, date));
                     }
                 }, cal.get(Calendar.YEAR)+1, cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 
@@ -92,7 +92,7 @@ public class ReciptRegisterActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("http://15.164.220.47/api/user/order", params,true, "POST");
+                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/user/order", params,true, "POST");
                         runOnUiThread(new Runnable() {
 
                             @Override
