@@ -10,32 +10,43 @@
         android:id="@+id/register_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="등록페이지로" />
+        android:text="계정등록" />
+
     <Button
         android:id="@+id/login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로그인페이지로" />
+        android:text="로그인" />
+
     <Button
         android:id="@+id/profile_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="내프로필 보기" />
+
     <Button
         android:id="@+id/delete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="지우기" />
+        android:text="계정삭제" />
+
     <Button
         android:id="@+id/recipt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="주문등록" />
+
     <Button
         android:id="@+id/recipt_mgt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="주문관리" />
 
-    
+    <Button
+        android:id="@+id/map_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="맵" />
+
+
 </LinearLayout>
