@@ -73,7 +73,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 issearch = false;
-                                                Toast.makeText(MapActivity.this, "추후구현예정", Toast.LENGTH_LONG).show();
+                                                LatLng position = marker.getPosition();
+                                                final HashMap params = new HashMap<String, String>();
+                                                params.put("latitude",String.valueOf(position.getLatitude()));
+                                                params.put("longitude", String.valueOf(position.getLongitude()));
+                                                new Thread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/map/hosts", params, "GET");
+                                                        runOnUiThread(new Runnable() {
+
+                                                            @Override
+                                                            public void run() {
+
+                                                                Toast.makeText(ReciptEditActivity.this, html, Toast.LENGTH_LONG).show();
+                                                            }
+
+                                                        });
+
+                                                    }
+                                                }).start();
                                             }
                                         })
                                         .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
