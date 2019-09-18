@@ -74,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
                 new Thread(new Runnable(){
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("http://15.164.220.47/api/user?_method=PUT",params,"POST");
+                        final String html = RequestHttpURLConnection.request("http://15.164.220.47/api/user?_method=PUT",params,true,"POST");
                         runOnUiThread(new Runnable(){
                             
                             @Override
