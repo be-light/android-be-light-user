@@ -27,6 +27,7 @@ import com.google.android.libraries.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -75,8 +76,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                 issearch = false;
                                                 LatLng position = marker.getPosition();
                                                 final HashMap params = new HashMap<String, String>();
-                                                params.put("latitude",String.valueOf(position.getLatitude()));
-                                                params.put("longitude", String.valueOf(position.getLongitude()));
+                                                params.put("latitude",String.valueOf(position.latitude));
+                                                params.put("longitude", String.valueOf(position.longitude));
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
@@ -86,7 +87,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                             @Override
                                                             public void run() {
 
-                                                                Toast.makeText(ReciptEditActivity.this, html, Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(MapActivity.this, html, Toast.LENGTH_LONG).show();
                                                             }
 
                                                         });
