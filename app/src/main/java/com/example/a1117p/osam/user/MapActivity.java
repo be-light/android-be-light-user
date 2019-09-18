@@ -74,7 +74,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 issearch = false;
-                                                LatLng position = marker.getPosition();
+                                                LatLng position = selectedMarker.getPosition();
                                                 final HashMap params = new HashMap<String, String>();
                                                 params.put("latitude",String.valueOf(position.latitude));
                                                 params.put("longitude", String.valueOf(position.longitude));
