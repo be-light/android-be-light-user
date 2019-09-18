@@ -27,7 +27,6 @@ import com.google.android.libraries.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -74,14 +73,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 issearch = false;
-                                                LatLng position = selectedMarker.getPosition();
-                                                final HashMap params = new HashMap<String, String>();
-                                                params.put("latitude",String.valueOf(position.latitude));
-                                                params.put("longitude", String.valueOf(position.longitude));
+                                                final LatLng position = selectedMarker.getPosition();
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/map/hosts", params, "GET");
+                                                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/map/hosts?latitude="+position.latitude+"&longitude="+position.longitude, null, "GET");
                                                         runOnUiThread(new Runnable() {
 
                                                             @Override
