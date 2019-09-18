@@ -77,7 +77,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/map/hosts?latitude="+position.latitude+"&longitude="+position.longitude, null, "GET");
+                                                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/map/hosts?lat="+position.latitude+"&lng="+position.longitude, null, "GET");
                                                         runOnUiThread(new Runnable() {
 
                                                             @Override
