@@ -83,7 +83,7 @@ public class ReciptEditActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/user/order?_method=PUT", params,true, "POST");
+                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/user/order?_method=PUT", params,true, "POST");
                         runOnUiThread(new Runnable() {
 
                             @Override

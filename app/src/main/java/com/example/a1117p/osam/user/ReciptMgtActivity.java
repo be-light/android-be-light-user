@@ -25,7 +25,7 @@ public class ReciptMgtActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/user/order", null, true, "GET");
+                    final String html = RequestHttpURLConnection.request("https://be-light.store/api/user/order", null, true, "GET");
                     JSONParser jsonParser = new JSONParser();
                     JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
                     adapter = new ListViewAdapter(jsonArray);

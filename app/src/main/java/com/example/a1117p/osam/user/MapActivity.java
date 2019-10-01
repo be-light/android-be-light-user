@@ -2,6 +2,11 @@ package com.example.a1117p.osam.user;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -14,11 +19,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.libraries.maps.CameraUpdateFactory;
 import com.google.android.libraries.maps.GoogleMap;
 import com.google.android.libraries.maps.OnMapReadyCallback;
 import com.google.android.libraries.maps.SupportMapFragment;
+import com.google.android.libraries.maps.model.BitmapDescriptorFactory;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.LatLngBounds;
 import com.google.android.libraries.maps.model.Marker;
@@ -77,7 +84,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/map/hosts?lat="+position.latitude+"&lng="+position.longitude, null, "GET");
+                                                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/map/hosts?lat="+position.latitude+"&lng="+position.longitude, null, "GET");
                                                         runOnUiThread(new Runnable() {
 
                                                             @Override
@@ -117,7 +124,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
-        mGoogleMap.setMyLocationEnabled(true);
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
@@ -139,6 +145,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             // Creating a LatLng object for the current location
             LatLng latLng = new LatLng(latitude, longitude);
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+
+
+            VectorDrawable vectorDrawable = (VectorDrawable) ContextCompat.getDrawable(this, R.drawable.makerpin);
+            Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
+                    vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            vectorDrawable.draw(canvas);
+
+
+            Bitmap smallMarker = Bitmap.createScaledBitmap(bitmap, 200, 200, false);
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+            googleMap.addMarker(markerOptions);
         }
     }
 }

@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Thread(new Runnable(){
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/auth/login",params,"POST");
+                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/auth/login",params,"POST");
                         runOnUiThread(new Runnable(){
                             
                             @Override

@@ -9,6 +9,10 @@ import java.util.*;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -69,15 +73,28 @@ public class RegisterActivity extends AppCompatActivity {
                 new Thread(new Runnable(){
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("http://121.184.10.219/api/auth/register",params,"POST");
-                        runOnUiThread(new Runnable(){
-                            
+                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/auth/register",params,"POST");
+                        runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                
-                                Toast.makeText(RegisterActivity.this,html,Toast.LENGTH_LONG).show();
+                                JSONParser parser = new JSONParser();
+                                try {
+                                    JSONObject object = (JSONObject) parser.parse(html);
+                                    Long status = (Long) object.get("status");
+                                    if(status==200){
+                                        Intent i = new Intent(RegisterActivity.this,SplashActivity.class);
+                                        i.putExtra("fromRegister",true);
+                                        startActivity(i);
+                                        Toast.makeText(RegisterActivity.this,"회원가입에 성공하였습니다.",Toast.LENGTH_LONG).show();
+                                    }
+                                    else{
+                                        Toast.makeText(RegisterActivity.this,"회원가입에 실패하였습니다.",Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(RegisterActivity.this,"에러가 발생하였습니다.",Toast.LENGTH_LONG).show();
+                                }
                             }
-                            
                         });
                         
                     }
