@@ -16,7 +16,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="#40BFFF" />
+                android:background="@color/main" />
 
             <View
                 android:layout_width="match_parent"
@@ -46,7 +46,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="50dp"
-                android:background="@drawable/roundedview2"
+                android:background="@drawable/roundedview"
                 android:elevation="20dp"
                 android:orientation="vertical"
                 android:paddingTop="30dp">
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -104,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -128,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -152,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -176,7 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -200,7 +200,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
                     android:layout_margin="10dp"
-                    android:background="@drawable/roundedbutton"
+                    android:background="@drawable/stadiumbutton"
                     android:paddingLeft="50dp"
                     android:paddingRight="50dp"
                     android:text="Sign up"

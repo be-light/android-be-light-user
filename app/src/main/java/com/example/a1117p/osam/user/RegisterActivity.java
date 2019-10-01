@@ -82,11 +82,12 @@ public class RegisterActivity extends AppCompatActivity {
                                     JSONObject object = (JSONObject) parser.parse(html);
                                     Long status = (Long) object.get("status");
                                     if(status==200){
-                                        Intent i = new Intent(RegisterActivity.this,SplashActivity.class);
-                                        i.putExtra("fromRegister",true);
-                                        startActivity(i);
                                         Toast.makeText(RegisterActivity.this,"회원가입에 성공하였습니다.",Toast.LENGTH_LONG).show();
-                                    }
+                                        Intent i = new Intent(RegisterActivity.this,SplashActivity.class);
+                                        i.putExtra("needLoading",false);
+                                        startActivity(i);
+                                        finish();
+                                     }
                                     else{
                                         Toast.makeText(RegisterActivity.this,"회원가입에 실패하였습니다.",Toast.LENGTH_LONG).show();
                                     }

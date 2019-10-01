@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="Be-light"
                 android:textAlignment="center"
-                android:textColor="#40BFFF"
+                android:textColor="@color/main"
                 android:textSize="50sp" />
 
             <LinearLayout
@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedview"
+                    android:background="@drawable/stadiumview"
                     android:orientation="horizontal">
 
                     <TextView
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/roundedbutton"
+                android:background="@drawable/stadiumbutton"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
                 android:text="Sign up"
@@ -118,11 +118,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/roundedbutton_white"
+                android:background="@drawable/stadiumbutton_white"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
                 android:text="Sign in"
-                android:textColor="#40BFFF" />
+                android:textColor="@color/main" />
         </LinearLayout>
 
     </LinearLayout>
