@@ -16,10 +16,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.LayoutInflater;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,8 +38,15 @@ import com.google.android.libraries.maps.model.LatLngBounds;
 import com.google.android.libraries.maps.model.Marker;
 import com.google.android.libraries.maps.model.MarkerOptions;
 
+import com.google.android.libraries.maps.GoogleMap.InfoWindowAdapter;
+
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -47,7 +56,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     Marker selectedMarker = null;
     BitmapDescriptor bitmapDescriptor;
     long backKeyClickTime = 0;
-
+    HashMap hashmap; 
+    LatLngBounds.Builder builder;
 
     void OvalProfile() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -94,7 +104,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         onMapReady(mGoogleMap);
                         return;
                     }
-                    LatLngBounds.Builder builder = LatLngBounds.builder();
+                    builder = LatLngBounds.builder();
                     for (Address address : addressList) {
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                         mGoogleMap.addMarker(new MarkerOptions()
@@ -124,8 +134,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                                                             @Override
                                                             public void run() {
+                                                                
+                                                                //Toast.makeText(MapActivity.this, html, Toast.LENGTH_LONG).show();
 
-                                                                Toast.makeText(MapActivity.this, html, Toast.LENGTH_LONG).show();
+                                                                 try {
+                                                                    JSONParser jsonParser = new JSONParser();
+                                                                    JSONArray jsonArr = (JSONArray) jsonParser.parse(html);
+                                                                    builder = LatLngBounds.builder();
+                                                                    hashmap = new HashMap<Marker, InfoWindowData>(); 
+                                                                    for(Object o:jsonArr){
+                                                                        JSONObject object = (JSONObject) o;                    
+                                                                        LatLng latLng = new LatLng(Double.parseDouble((String)object.get("hostLatitude")),Double.parseDouble((String)object.get("hostLongitude")));
+                                                                        InfoWindowData data = new InfoWindowData((String)object.get("hostAddress"),(String)object.get("hostName"),(String)object.get("hostTel"),(String)object.get("hostPostalCode"),(Long)object.get("hostIdx"));
+                                                                        final Marker marker = mGoogleMap.addMarker(new MarkerOptions()
+                                                                                .position(latLng)
+                                                                                .icon(bitmapDescriptor)
+                                                                                .title((String)object.get("hostName")));
+                                                                        builder = builder.include(latLng);
+                                                                        hashmap.put(marker,data);
+                                                                    
+                                                                    
+                                                                    }
+                                                                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
+                                                                    mGoogleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(hashmap));
+                                                                } catch (final Exception e) {
+                                                                    runOnUiThread(new Runnable() {
+
+                                                                        @Override
+                                                                        public void run() {
+                                                                            Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                                                            finish();
+                                                                        }
+
+                                                                    });
+                                                                }
+                                                           
                                                             }
 
                                                         });
@@ -258,5 +301,48 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+class CustomInfoWindowAdapter implements InfoWindowAdapter {
 
+        private final View mWindow;
+        private Marker marker;
+        HashMap<Marker,InfoWindowData> map;
+
+        CustomInfoWindowAdapter(HashMap<Marker,InfoWindowData> map) {
+            this.map = map;
+            mWindow = getLayoutInflater().inflate(R.layout.custom_info_window, null);
+            mWindow.findViewById(R.id.recipt_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+            
+
+                }
+            });
+            mWindow.findViewById(R.id.review_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+            
+
+                }
+            });
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            render(marker, mWindow);
+            this.marker=marker;
+            return mWindow;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+
+        private void render(Marker marker, View view) {
+            InfoWindowData data=map.get(marker);
+            ((TextView)view.findViewById(R.id.host_name)).setText(data.hostName);
+            ((TextView)view.findViewById(R.id.host_num)).setText(data.hostTel);
+            ((TextView)view.findViewById(R.id.host_addr)).setText(data.hostAddress);
+        }
+    }
 }
