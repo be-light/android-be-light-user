@@ -48,5 +48,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'com.appolica:interactive-info-window:v1.0.6'
+    implementation 'com.google.android.material:material:1.1.0-beta01'
+
 
 }

@@ -116,10 +116,10 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     void StartThread(boolean b) {
-        /*Intent i = new Intent(SplashActivity.this, MapActivity.class);
+        Intent i = new Intent(SplashActivity.this, MapActivity.class);
         startActivity(i);
-        finish();*/
-        if (b) {
+        finish();
+        /*if (b) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -145,6 +145,6 @@ public class SplashActivity extends AppCompatActivity {
             findViewById(R.id.btns).setVisibility(View.VISIBLE);
             findViewById(R.id.login_btn).performClick();
 
-        }
+        }*/
     }
 }

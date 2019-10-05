@@ -1,65 +1,84 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#777777"
-    android:padding="10dp">
+    android:background="#00000000"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#E9E9E9"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#ffffff"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/host_name"
-                    />
-                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
                     android:id="@+id/host_num"
-                    />
-                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
                     android:id="@+id/host_addr"
-                    />
-            </LinearLayout>            
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/host_img"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:adjustViewBounds="true"
                 android:src="@drawable/cat" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/recipt_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/stadiumbutton"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:text="예약"
-            android:textColor="#ffffff" />
-        <Button
-            android:id="@+id/review_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/stadiumbutton"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:text="리뷰"
-            android:textColor="#ffffff" />
+            <Button
+                android:id="@+id/recipt_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/stadiumbutton_slim"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="예약"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/review_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/stadiumbutton_slim"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="리뷰"
+                android:textColor="#ffffff" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -16,47 +16,47 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.LayoutInflater;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.libraries.maps.CameraUpdateFactory;
-import com.google.android.libraries.maps.GoogleMap;
-import com.google.android.libraries.maps.OnMapReadyCallback;
-import com.google.android.libraries.maps.SupportMapFragment;
-import com.google.android.libraries.maps.model.BitmapDescriptor;
-import com.google.android.libraries.maps.model.BitmapDescriptorFactory;
-import com.google.android.libraries.maps.model.LatLng;
-import com.google.android.libraries.maps.model.LatLngBounds;
-import com.google.android.libraries.maps.model.Marker;
-import com.google.android.libraries.maps.model.MarkerOptions;
+import com.appolica.interactiveinfowindow.InfoWindow;
+import com.appolica.interactiveinfowindow.InfoWindowManager;
+import com.appolica.interactiveinfowindow.fragment.MapInfoWindowFragment;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.google.android.libraries.maps.GoogleMap.InfoWindowAdapter;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
-import java.util.*;
-
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
-    SupportMapFragment mMapFragment;
+    MapInfoWindowFragment mMapFragment;
     GoogleMap mGoogleMap;
     Boolean issearch = false;
     Marker selectedMarker = null;
     BitmapDescriptor bitmapDescriptor;
     long backKeyClickTime = 0;
-    HashMap hashmap; 
+    HashMap<Marker, InfoWindow> hashmap;
+    InfoWindowManager manager;
     LatLngBounds.Builder builder;
 
     void OvalProfile() {
@@ -65,6 +65,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             imageView.setBackground(new ShapeDrawable(new OvalShape()));
             imageView.setClipToOutline(true);
         }
+    }
+
+    void downReview() {
+        findViewById(R.id.review).setClickable(false);
+        findViewById(R.id.down).setClickable(false);
+        findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim));
     }
 
     @Override
@@ -78,9 +84,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(smallMarker);
 
 
-        mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mMapFragment = (MapInfoWindowFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
-
+        downReview();
+        manager = mMapFragment.infoWindowManager();
 
         OvalProfile();
 
@@ -89,6 +96,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 issearch = true;
                 mGoogleMap.clear();
+                mGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                    @Override
+                    public View getInfoWindow(Marker marker) {
+                        return null;
+                    }
+
+                    @Override
+                    public View getInfoContents(Marker marker) {
+                        return null;
+                    }
+                });
 
                 InputMethodManager imm;
                 imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -134,41 +152,65 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                                                             @Override
                                                             public void run() {
-                                                                
+                                                                mGoogleMap.clear();
+                                                                mGoogleMap.setOnMarkerClickListener(null);
                                                                 //Toast.makeText(MapActivity.this, html, Toast.LENGTH_LONG).show();
 
-                                                                 try {
+                                                                try {
                                                                     JSONParser jsonParser = new JSONParser();
                                                                     JSONArray jsonArr = (JSONArray) jsonParser.parse(html);
                                                                     builder = LatLngBounds.builder();
-                                                                    hashmap = new HashMap<Marker, InfoWindowData>(); 
-                                                                    for(Object o:jsonArr){
-                                                                        JSONObject object = (JSONObject) o;                    
-                                                                        LatLng latLng = new LatLng(Double.parseDouble((String)object.get("hostLatitude")),Double.parseDouble((String)object.get("hostLongitude")));
-                                                                        InfoWindowData data = new InfoWindowData((String)object.get("hostAddress"),(String)object.get("hostName"),(String)object.get("hostTel"),(String)object.get("hostPostalCode"),(Long)object.get("hostIdx"));
+                                                                    hashmap = new HashMap<>();
+                                                                    for (Object o : jsonArr) {
+                                                                        JSONObject object = (JSONObject) o;
+                                                                        LatLng latLng = new LatLng(Double.parseDouble((String) object.get("hostLatitude")), Double.parseDouble((String) object.get("hostLongitude")));
+                                                                        InfoWindowData data = new InfoWindowData((String) object.get("hostAddress"), (String) object.get("hostName"), (String) object.get("hostTel"), (String) object.get("hostPostalCode"), (Long) object.get("hostIdx"));
                                                                         final Marker marker = mGoogleMap.addMarker(new MarkerOptions()
                                                                                 .position(latLng)
                                                                                 .icon(bitmapDescriptor)
-                                                                                .title((String)object.get("hostName")));
+                                                                                .title((String) object.get("hostName")));
                                                                         builder = builder.include(latLng);
-                                                                        hashmap.put(marker,data);
-                                                                    
-                                                                    
+                                                                        InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
+                                                                        final InfoWindow infoWindow = new InfoWindow(marker, markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
+                                                                        // Shows the InfoWindow or hides it if it is already opened.
+                                                                        manager.toggle(infoWindow, true);
+                                                                        hashmap.put(marker, infoWindow);
+
+
                                                                     }
-                                                                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
-                                                                    mGoogleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(hashmap));
+                                                                    new Thread(new Runnable() {
+                                                                        @Override
+                                                                        public void run() {
+                                                                            runOnUiThread(new Runnable() {
+                                                                                @Override
+                                                                                public void run() {
+
+                                                                                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
+                                                                                    mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                                                                        @Override
+                                                                                        public boolean onMarkerClick(Marker marker) {
+                                                                                            InfoWindow window = hashmap.get(marker);
+                                                                                            if (window != null) {
+                                                                                                manager.toggle(window, true);
+                                                                                            }
+                                                                                            return true;
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                    }).start();
                                                                 } catch (final Exception e) {
                                                                     runOnUiThread(new Runnable() {
 
                                                                         @Override
                                                                         public void run() {
-                                                                            Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                                                            finish();
+                                                                            new AlertDialog.Builder(MapActivity.this).setMessage(e.getMessage()).create().show();
                                                                         }
 
                                                                     });
                                                                 }
-                                                           
+
                                                             }
 
                                                         });
@@ -251,8 +293,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         mGoogleMap = googleMap;
+        mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(MapActivity.this, R.anim.down_anim));
+
+            }
+        });
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
@@ -272,9 +321,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             double longitude = location.getLongitude();
 
             // Creating a LatLng object for the current location
-            LatLng latLng = new LatLng(latitude, longitude);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
 
+            final LatLng latLng = new LatLng(latitude, longitude);
 
             /*VectorDrawableCompat vectorDrawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_makerpin, null);
 
@@ -287,7 +335,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.icon(bitmapDescriptor);
-            googleMap.addMarker(markerOptions);
+
+            InfoWindowData data = new InfoWindowData("1", "1", "1", "1", 1);
+
+            InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
+            final InfoWindow infoWindow = new InfoWindow(googleMap.addMarker(markerOptions), markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
+            // Shows the InfoWindow or hides it if it is already opened.
+            manager.toggle(infoWindow, true);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+                        }
+                    });
+                }
+            }).start();
         }
     }
 
@@ -295,54 +361,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onBackPressed() {
         if (System.currentTimeMillis() > backKeyClickTime + 1000) {
             backKeyClickTime = System.currentTimeMillis();
-            Toast.makeText(this,"앱을 종료하시려면 뒤로가기 버튼을 다시 눌러주세요",Toast.LENGTH_SHORT).show();
-        }else {
+            Toast.makeText(this, "앱을 종료하시려면 뒤로가기 버튼을 다시 눌러주세요", Toast.LENGTH_SHORT).show();
+        } else {
             finish();
         }
     }
 
-class CustomInfoWindowAdapter implements InfoWindowAdapter {
 
-        private final View mWindow;
-        private Marker marker;
-        HashMap<Marker,InfoWindowData> map;
-
-        CustomInfoWindowAdapter(HashMap<Marker,InfoWindowData> map) {
-            this.map = map;
-            mWindow = getLayoutInflater().inflate(R.layout.custom_info_window, null);
-            mWindow.findViewById(R.id.recipt_btn).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-            
-
-                }
-            });
-            mWindow.findViewById(R.id.review_btn).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-            
-
-                }
-            });
-        }
-
-        @Override
-        public View getInfoWindow(Marker marker) {
-            render(marker, mWindow);
-            this.marker=marker;
-            return mWindow;
-        }
-
-        @Override
-        public View getInfoContents(Marker marker) {
-            return null;
-        }
-
-        private void render(Marker marker, View view) {
-            InfoWindowData data=map.get(marker);
-            ((TextView)view.findViewById(R.id.host_name)).setText(data.hostName);
-            ((TextView)view.findViewById(R.id.host_num)).setText(data.hostTel);
-            ((TextView)view.findViewById(R.id.host_addr)).setText(data.hostAddress);
-        }
-    }
 }
