@@ -63,6 +63,26 @@ public class CustomInfoWindowFragment extends Fragment {
                         downReview();
                     }
                 });
+                final HashMap params = new HashMap<String, String>(); 
+                
+                params.put("hostIdx",data.hostIdx);
+                
+                new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/reviews",params,true,"POST");
+                        runOnUiThread(new Runnable(){
+                            
+                            @Override
+                            public void run() {
+                                
+                                Toast.makeText(context,html,Toast.LENGTH_LONG).show();
+                            }
+                            
+                        });
+                        
+                    }
+                }).start();
             }
         });
         new Thread(new Runnable(){
