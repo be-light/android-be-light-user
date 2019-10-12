@@ -12,6 +12,7 @@ import android.widget.Toast;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import android.app.ProgressDialog;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -62,6 +63,10 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this,"주소를 입력하세요",Toast.LENGTH_LONG).show();
                     return;
                 }
+                final ProgressDialog dialog = new ProgressDialog( RegisterActivity.this);
+                dialog.setMessage("회원가입 중 입니다.");
+
+                dialog.show();
                 final HashMap params = new HashMap<String, String>(); 
                 
                 params.put("userId",id);
@@ -77,15 +82,13 @@ public class RegisterActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                dialog.dismiss();
                                 JSONParser parser = new JSONParser();
                                 try {
                                     JSONObject object = (JSONObject) parser.parse(html);
                                     Long status = (Long) object.get("status");
                                     if(status==200){
                                         Toast.makeText(RegisterActivity.this,"회원가입에 성공하였습니다.",Toast.LENGTH_LONG).show();
-                                        Intent i = new Intent(RegisterActivity.this,SplashActivity.class);
-                                        i.putExtra("needLoading",false);
-                                        startActivity(i);
                                         finish();
                                      }
                                     else{

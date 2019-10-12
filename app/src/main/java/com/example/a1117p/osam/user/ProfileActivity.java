@@ -18,6 +18,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.HashMap;
+import android.app.ProgressDialog;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -34,6 +35,10 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        final ProgressDialog dialog = new ProgressDialog( ProfileActivity.this);
+        dialog.setMessage("프로필을 불러오는 중 입니다.");
+
+        dialog.show();
         OvalProfile();
         new Thread(new Runnable() {
             @Override
@@ -44,10 +49,10 @@ public class ProfileActivity extends AppCompatActivity {
                     JSONObject jsonObj = (JSONObject) jsonParser.parse(html);
                     final JSONObject jsonObj2 = (JSONObject) jsonObj.get("user");
                     runOnUiThread(new Runnable() {
-
                         @Override
                         public void run() {
 
+                            dialog.dismiss();
                             ((TextView) findViewById(R.id.id)).setText((String) jsonObj2.get("userId"));
                             ((TextView) findViewById(R.id.name)).setText((String) jsonObj2.get("userName"));
                             ((EditText) findViewById(R.id.email)).setText((String) jsonObj2.get("userEmail"));
@@ -96,6 +101,10 @@ public class ProfileActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                final ProgressDialog dialog = new ProgressDialog( ProfileActivity.this);
+                dialog.setMessage("프로필을 불러오는 중 입니다.");
+
+                dialog.show();
                 final HashMap params = new HashMap<String, String>();
 
                 params.put("userEmail", email);
@@ -108,6 +117,7 @@ public class ProfileActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                dialog.dismiss();
                                 JSONParser parser = new JSONParser();
                                 try {
                                     JSONObject object = (JSONObject) parser.parse(html);

@@ -37,13 +37,11 @@ public class ResvtnClickDialog extends Dialog {
         setContentView(R.layout.resvtn_click_dialog);
         final Button resvtn = findViewById(R.id.rcipt_btn);
         if (drop_data != null) {
-            ((TextView) findViewById(R.id.drop_what)).setText("여기가 뭐하는 부분인지 모름");
             ((TextView) findViewById(R.id.drop_name)).setText(drop_data.hostName);
             ((TextView) findViewById(R.id.drop_addr)).setText(drop_data.hostAddress);
             ((TextView) findViewById(R.id.drop_tel)).setText(drop_data.hostTel);
         }
         if (pick_data != null) {
-            ((TextView) findViewById(R.id.pick_what)).setText("여기가 뭐하는 부분인지 모름");
             ((TextView) findViewById(R.id.pick_name)).setText(pick_data.hostName);
             ((TextView) findViewById(R.id.pick_addr)).setText(pick_data.hostAddress);
             ((TextView) findViewById(R.id.pick_tel)).setText(pick_data.hostTel);
@@ -55,7 +53,7 @@ public class ResvtnClickDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 drop_data = data;
-                ((TextView) findViewById(R.id.drop_what)).setText("여기가 뭐하는 부분인지 모름");
+                //((TextView) findViewById(R.id.drop_what)).setText("여기가 뭐하는 부분인지 모름");
                 ((TextView) findViewById(R.id.drop_name)).setText(drop_data.hostName);
                 ((TextView) findViewById(R.id.drop_addr)).setText(drop_data.hostAddress);
                 ((TextView) findViewById(R.id.drop_tel)).setText(drop_data.hostTel);
@@ -68,7 +66,7 @@ public class ResvtnClickDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 pick_data = data;
-                ((TextView) findViewById(R.id.pick_what)).setText("여기가 뭐하는 부분인지 모름");
+                //((TextView) findViewById(R.id.pick_what)).setText("여기가 뭐하는 부분인지 모름");
                 ((TextView) findViewById(R.id.pick_name)).setText(pick_data.hostName);
                 ((TextView) findViewById(R.id.pick_addr)).setText(pick_data.hostAddress);
                 ((TextView) findViewById(R.id.pick_tel)).setText(pick_data.hostTel);
@@ -80,6 +78,7 @@ public class ResvtnClickDialog extends Dialog {
         resvtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(activity,"예약API미구현",Toast.LENGTH_LONG).show();
                 /*final HashMap params = new HashMap<String, String>();
                 params.put("hostIdx", idx);
                 params.put("checkIn", checkin);

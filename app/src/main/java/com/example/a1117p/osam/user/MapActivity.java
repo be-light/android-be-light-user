@@ -20,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.app.ProgressDialog;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -73,6 +74,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim));
     }
 
+    void downReview_fast() {
+        findViewById(R.id.review).setClickable(false);
+        findViewById(R.id.down).setClickable(false);
+        findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim_fast));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +93,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         mMapFragment = (MapInfoWindowFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
-        downReview();
+        downReview_fast();
         manager = mMapFragment.infoWindowManager();
 
         OvalProfile();
@@ -95,6 +102,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 issearch = true;
+                final ProgressDialog dialog = new ProgressDialog( MapActivity.this);
+                dialog.setMessage("검색중입니다.");
+        
+                dialog.show();
                 mGoogleMap.clear();
                 mGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
                     @Override
@@ -116,6 +127,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Geocoder geocoder = new Geocoder(MapActivity.this);
                 try {
                     List<Address> addressList = geocoder.getFromLocationName(search, 20);
+                    
+                    dialog.dismiss();
                     if (addressList.size() == 0) {
                         Toast.makeText(MapActivity.this, "검색결과없음", Toast.LENGTH_LONG).show();
                         issearch = false;
@@ -144,6 +157,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             public void onClick(DialogInterface dialog, int which) {
                                                 issearch = false;
                                                 final LatLng position = selectedMarker.getPosition();
+                                                final ProgressDialog Pdialog = new ProgressDialog( MapActivity.this);
+                                                Pdialog.setMessage("검색중입니다.");
+                                        
+                                                Pdialog.show();
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
@@ -152,6 +169,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                                                             @Override
                                                             public void run() {
+                                                                Pdialog.dismiss();
                                                                 mGoogleMap.clear();
                                                                 mGoogleMap.setOnMarkerClickListener(null);
                                                                 //Toast.makeText(MapActivity.this, html, Toast.LENGTH_LONG).show();
@@ -335,25 +353,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.icon(bitmapDescriptor);
+            markerOptions.title("내위치");
 
-            InfoWindowData data = new InfoWindowData("1", "1", "1", "1", 1);
+            //InfoWindowData data = new InfoWindowData("1", "1", "1", "1", 1);
 
-            InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
-            final InfoWindow infoWindow = new InfoWindow(googleMap.addMarker(markerOptions), markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
+            //InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
+            //final InfoWindow infoWindow = new InfoWindow(googleMap.addMarker(markerOptions), markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
             // Shows the InfoWindow or hides it if it is already opened.
-            manager.toggle(infoWindow, true);
-            new Thread(new Runnable() {
+            //manager.toggle(infoWindow, true);
+            googleMap.addMarker(markerOptions);
+            
+            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+            /*new Thread(new Runnable() {
                 @Override
                 public void run() {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
-                            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
                         }
                     });
                 }
-            }).start();
+            }).start();*/
         }
     }
 

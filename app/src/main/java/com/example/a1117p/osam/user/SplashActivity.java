@@ -10,6 +10,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.app.ProgressDialog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 Intent i = new Intent(SplashActivity.this, RegisterActivity.class);
                 startActivity(i);
-                finish();
+                //finish();
             }
         });
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
@@ -57,11 +58,14 @@ public class SplashActivity extends AppCompatActivity {
                             Toast.makeText(SplashActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
                             return;
                         }
+                        final ProgressDialog dialog = new ProgressDialog( SplashActivity.this);
+                        dialog.setMessage("로그인중입니다.");
+             
+                        dialog.show();
                         final HashMap params = new HashMap<String, String>();
 
                         params.put("userId", id);
                         params.put("userPassword", passwd);
-                        ProgressDialog dialog = new ProgressDialog(SplashActivity.this);
 
                         new Thread(new Runnable() {
                             @Override
@@ -71,6 +75,7 @@ public class SplashActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        dialog.dismiss();
                                         JSONParser parser = new JSONParser();
                                         try {
                                             JSONObject object = (JSONObject) parser.parse(html);
@@ -116,10 +121,10 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     void StartThread(boolean b) {
-        Intent i = new Intent(SplashActivity.this, MapActivity.class);
-        startActivity(i);
-        finish();
-        /*if (b) {
+        //Intent i = new Intent(SplashActivity.this, MapActivity.class);
+        //startActivity(i);
+        //finish();
+        if (b) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -145,6 +150,6 @@ public class SplashActivity extends AppCompatActivity {
             findViewById(R.id.btns).setVisibility(View.VISIBLE);
             findViewById(R.id.login_btn).performClick();
 
-        }*/
+        }
     }
 }

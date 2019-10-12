@@ -98,14 +98,14 @@
                     android:layout_weight="1.5"
                     android:clickable="false" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/down"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.15"
-                    android:textAlignment="center"
-                    android:textSize="30sp"
-                    android:text="▼"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/downarrow"
                     android:background="@color/main"
                     android:clickable="true" />
 

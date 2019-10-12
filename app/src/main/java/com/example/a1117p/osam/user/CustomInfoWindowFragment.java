@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import android.graphics.Color;
 
 public class CustomInfoWindowFragment extends Fragment {
 
@@ -38,7 +39,7 @@ public class CustomInfoWindowFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         render(view);
         //final  LinearLayout linearLayout = context.findViewById(R.id.map_linear);
@@ -64,6 +65,22 @@ public class CustomInfoWindowFragment extends Fragment {
                 });
             }
         });
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                context.runOnUiThread(new Runnable(){
+                    
+                    @Override
+                    public void run() {
+                        
+                        ((ViewGroup)view.getParent()).setBackgroundColor(Color.TRANSPARENT);
+                    }
+                    
+                });
+                
+            }
+        }).start();
+        
     }
 
     private void render(View view) {
