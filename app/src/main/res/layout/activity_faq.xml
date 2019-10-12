@@ -3,7 +3,9 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/scroll"
     android:background="@color/main">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,11 +14,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/roundedview"
-
-        android:orientation="vertical">
-
-        <TextView
+        android:orientation="vertical"
+        android:background="@drawable/roundedview">
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -52,7 +52,158 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/youtubeViewer"
-            android:layout_marginBottom="30dp" />
-    </LinearLayout>
+            android:layout_marginBottom="30dp" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
 
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_weight="2"
+                android:src="@drawable/step1" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/main"
+            android:text="STEP 1 예약하기" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_weight="2"
+                android:src="@drawable/step2" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/main"
+            android:text="STEP 2 짐맡기기" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_weight="2"
+                android:src="@drawable/step3" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/main"
+            android:text="STEP 3 짐 이동" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_weight="2"
+                android:src="@drawable/step4" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/main"
+            android:text="STEP 4 여행하기" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_weight="2"
+                android:src="@drawable/step5" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/main"
+            android:text="STEP 5 이동하기" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_weight="2"
+                android:src="@drawable/step6" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/main"
+            android:text="STEP 6 짐찾기" />
+
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/video" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </LinearLayout>
 </ScrollView>

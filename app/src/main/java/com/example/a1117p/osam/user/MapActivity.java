@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.app.ProgressDialog;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -97,7 +98,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         manager = mMapFragment.infoWindowManager();
 
         OvalProfile();
-
+        ((TextView)findViewById(R.id.name)).setText(RequestHttpURLConnection.name);
+        ((TextView)findViewById(R.id.email)).setText(RequestHttpURLConnection.email);
         findViewById(R.id.search_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

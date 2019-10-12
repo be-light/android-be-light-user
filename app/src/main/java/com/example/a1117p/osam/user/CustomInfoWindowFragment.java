@@ -1,24 +1,33 @@
 package com.example.a1117p.osam.user;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import android.graphics.Color;
+
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+
+import java.util.HashMap;
 
 public class CustomInfoWindowFragment extends Fragment {
 
     InfoWindowData data;
     AppCompatActivity context;
     private View mWindow;
+   ListView listView;
 
     CustomInfoWindowFragment(InfoWindowData data, AppCompatActivity context) {
         this.data = data;
@@ -51,56 +60,78 @@ public class CustomInfoWindowFragment extends Fragment {
 
             }
         });
+        listView = context.findViewById(R.id.review_list);
         mWindow.findViewById(R.id.review_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(context, R.anim.logo_anim));
-                context.findViewById(R.id.review).setClickable(true);
-                context.findViewById(R.id.down).setClickable(true);
-                context.findViewById(R.id.down).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        downReview();
-                    }
-                });
-                final HashMap params = new HashMap<String, String>(); 
-                
-                params.put("hostIdx",data.hostIdx);
-                
-                new Thread(new Runnable(){
+                final ProgressDialog Pdialog = new ProgressDialog(context);
+                Pdialog.setMessage("리뷰를 불러오는중입니다.");
+
+                Pdialog.show();
+                listView.setAdapter(null);
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/reviews",params,true,"POST");
-                        runOnUiThread(new Runnable(){
-                            
-                            @Override
-                            public void run() {
-                                
-                                Toast.makeText(context,html,Toast.LENGTH_LONG).show();
-                            }
-                            
-                        });
-                        
+                        final HashMap params = new HashMap<String, String>();
+
+                                try {
+                                    final String html = RequestHttpURLConnection.request("https://be-light.store/api/reviews?hostIdx=" + data.hostIdx, params, true, "GET");
+                                    JSONParser jsonParser = new JSONParser();
+                                    JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
+                                    final ReviewListAdapter adapter = new ReviewListAdapter(jsonArray);
+                                    context.runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+
+                                            Pdialog.dismiss();
+                                            context.findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(context, R.anim.logo_anim));
+                                            context.findViewById(R.id.review).setClickable(true);
+                                            context.findViewById(R.id.down).setClickable(true);
+                                            context.findViewById(R.id.down).setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    downReview();
+                                                }
+                                            });
+                                            listView.setAdapter(adapter);
+                                        }
+
+                                    });
+                                } catch (final Exception e) {
+                                    context.runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+
+                                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+
+                                    });
+                                }
+
                     }
                 }).start();
+
             }
         });
-        new Thread(new Runnable(){
+
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                context.runOnUiThread(new Runnable(){
-                    
+                context.runOnUiThread(new Runnable() {
+
                     @Override
                     public void run() {
-                        
-                        ((ViewGroup)view.getParent()).setBackgroundColor(Color.TRANSPARENT);
+
+                        ((ViewGroup) view.getParent()).setBackgroundColor(Color.TRANSPARENT);
                     }
-                    
+
                 });
-                
+
             }
         }).start();
-        
+
     }
 
     private void render(View view) {

@@ -1,5 +1,9 @@
 package com.example.a1117p.osam.user;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,13 +11,14 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class RequestHttpURLConnection {
-    static String cookie = "";
+    static String cookie = "", email = "",name="";
 
     public static String request(String _url, HashMap<String, String> _params, String method) {
         return request(_url, _params, false, method);
@@ -93,9 +98,14 @@ public class RequestHttpURLConnection {
             if (header.containsKey("Set-Cookie")) {
                 List<String> cookies = header.get("Set-Cookie");
                 for (int i = 0; i < cookies.size(); i++)
-                    if (cookies.get(i).contains("user")) {
+                    if(cookies.get(i).contains("public_user")){
+                        String tmp = URLDecoder.decode(cookies.get(i).split("=")[1]);
+                        tmp = tmp.replace("; Path","").replace("j:","");
+                        JSONObject object = (JSONObject) new JSONParser().parse(tmp);
+                        name= (String) object.get("userName");
+                        email=(String) object.get("userEmail");
+                    }else if (cookies.get(i).contains("user")) {
                         cookie = cookies.get(i);
-                        break;
                     }
             }
 
@@ -117,6 +127,8 @@ public class RequestHttpURLConnection {
         } catch (MalformedURLException e) { // for URL.
             e.printStackTrace();
         } catch (IOException e) { // for openConnection().
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         } finally {
             if (urlConn != null)
