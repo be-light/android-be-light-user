@@ -3,6 +3,7 @@
     android:layout_height="wrap_content"
     android:background="#777777"
     android:padding="10dp">
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,105 +12,171 @@
 
 
         <LinearLayout
+            android:id="@+id/drop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/drop"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2"
+                android:gravity="center"
                 android:text="맡기는곳"
-                android:textSize="30sp"
-                android:textAlignment="center" 
-                />
+                android:textColor="@color/main"
+                android:textSize="30sp" />
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/drop_name"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/drop_addr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textAlignment="center" />
+
+                    <Button
+                        android:id="@+id/checkIn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="#FFFFFF"
+                        android:text="체크인 날짜"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/drop_addr"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="수화물 개수"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/checkInCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="클릭"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="center" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/main_gray" />
+
+        <LinearLayout
+            android:id="@+id/pick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="찾는곳"
+                android:textAlignment="center"
+                android:textColor="@color/main"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/drop_num"
-                    />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pick_addr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3" />
+
+                    <Button
+                        android:id="@+id/checkOut"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:background="#FFFFFF"
+                        android:text="체크아웃 날짜" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="수화물 개수"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/checkOutCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="클릭"
+                        android:textAlignment="center" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/pick"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
+            <Button
+                android:id="@+id/cancel_btn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="찾는곳"
-                android:textSize="30sp"
-                android:textAlignment="center" 
-                />
-            <LinearLayout
-                android:layout_width="0dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/stadiumbutton"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="취소"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/rcipt_btn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pick_name"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pick_addr"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pick_num"
-                    />
-            </LinearLayout>
+                android:layout_margin="10dp"
+                android:background="@drawable/stadiumbutton"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="확인"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/cancel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/stadiumbutton"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:text="취소"
-            android:textColor="#ffffff" />
-        <Button
-            android:id="@+id/rcipt_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/stadiumbutton"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:text="확인"
-            android:textColor="#ffffff" />
-    </LinearLayout>
 </LinearLayout>
