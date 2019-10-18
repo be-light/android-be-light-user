@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 public class ResvtnClickDialog extends Dialog {
     static InfoWindowData drop_data = null, pick_data = null;
+    static String drop_date,pick_date;
     InfoWindowData data;
     Activity activity;
 
@@ -29,7 +30,7 @@ public class ResvtnClickDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //다이얼로그 밖의 화면은 흐리게 만들어줌
+       
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         getWindow().setAttributes(layoutParams);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
@@ -79,28 +80,32 @@ public class ResvtnClickDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 Toast.makeText(activity,"예약API미구현",Toast.LENGTH_LONG).show();
-                /*final HashMap params = new HashMap<String, String>();
-                params.put("hostIdx", idx);
+                final HashMap params = new HashMap<String, String>();
+                String paid="6000";
+                String checkin="2019-10-14",checkout="2019-10-15",itemCount="1";
                 params.put("checkIn", checkin);
                 params.put("checkOut", checkout);
                 params.put("paid", paid);
+                params.put("hostIdx",drop_data.hostIdx+"");
+                params.put("ghostIdx",pick_data.hostIdx+"");
+                params.put("itemCount",itemCount);
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         final String html = RequestHttpURLConnection.request("https://be-light.store/api/user/order", params,true, "POST");
-                        runOnUiThread(new Runnable() {
+                        activity.runOnUiThread(new Runnable() {
 
                             @Override
                             public void run() {
 
-                                Toast.makeText(ReciptRegisterActivity.this, html, Toast.LENGTH_LONG).show();
+                                Toast.makeText(activity, html, Toast.LENGTH_LONG).show();
                             }
 
                         });
 
                     }
-                }).start();*/
+                }).start();
             }
         });
 

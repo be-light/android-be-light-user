@@ -74,11 +74,12 @@ public class ReciptEditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String checkIn = ((Button) findViewById(R.id.checkIn)).getText().toString();
                 String checkOut = ((Button) findViewById(R.id.checkOut)).getText().toString();
-
+                String itemCount="1";
                 final HashMap params = new HashMap<String, String>();
                 params.put("reciptNumber",item.getReciptNumber());
                 params.put("checkIn", checkIn);
                 params.put("checkOut", checkOut);
+                params.put("itemCount", itemCount);
 
                 new Thread(new Runnable() {
                     @Override
