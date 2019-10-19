@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +26,9 @@ public class CustomInfoWindowFragment extends Fragment {
 
     InfoWindowData data;
     AppCompatActivity context;
+    ListView listView;
     private View mWindow;
-   ListView listView;
+    boolean isReview=true;
 
     CustomInfoWindowFragment(InfoWindowData data, AppCompatActivity context) {
         this.data = data;
@@ -41,12 +42,6 @@ public class CustomInfoWindowFragment extends Fragment {
         return mWindow;
     }
 
-    void downReview() {
-        context.findViewById(R.id.review).setClickable(false);
-        context.findViewById(R.id.down).setClickable(false);
-        context.findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(context, R.anim.down_anim));
-    }
-
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -55,64 +50,65 @@ public class CustomInfoWindowFragment extends Fragment {
         mWindow.findViewById(R.id.recipt_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new ResvtnClickDialog(context, data);
+                Dialog dialog = new ResvtnClickDialog(context, data, Integer.parseInt(((TextView) context.findViewById(R.id.count)).getText().toString()));
+
                 dialog.show();
 
             }
         });
-        listView = context.findViewById(R.id.review_list);
+        listView = mWindow.findViewById(R.id.review_list);
         mWindow.findViewById(R.id.review_btn).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                final ProgressDialog Pdialog = new ProgressDialog(context);
-                Pdialog.setMessage("리뷰를 불러오는중입니다.");
+            public void onClick(final View v) {
+                if(isReview) {
 
-                Pdialog.show();
-                listView.setAdapter(null);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final HashMap params = new HashMap<String, String>();
+                    final ProgressDialog Pdialog = new ProgressDialog(context);
+                    Pdialog.setMessage("리뷰를 불러오는중입니다.");
 
-                                try {
-                                    final String html = RequestHttpURLConnection.request("https://be-light.store/api/reviews?hostIdx=" + data.hostIdx, params, true, "GET");
-                                    JSONParser jsonParser = new JSONParser();
-                                    JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
-                                    final ReviewListAdapter adapter = new ReviewListAdapter(jsonArray);
-                                    context.runOnUiThread(new Runnable() {
+                    Pdialog.show();
+                    listView.setAdapter(null);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final HashMap params = new HashMap<String, String>();
 
-                                        @Override
-                                        public void run() {
+                            try {
+                                final String html = RequestHttpURLConnection.request("https://be-light.store/api/reviews?hostIdx=" + data.hostIdx, params, true, "GET");
+                                JSONParser jsonParser = new JSONParser();
+                                JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
+                                final ReviewListAdapter adapter = new ReviewListAdapter(jsonArray);
+                                context.runOnUiThread(new Runnable() {
 
-                                            Pdialog.dismiss();
-                                            context.findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(context, R.anim.logo_anim));
-                                            context.findViewById(R.id.review).setClickable(true);
-                                            context.findViewById(R.id.down).setClickable(true);
-                                            context.findViewById(R.id.down).setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    downReview();
-                                                }
-                                            });
-                                            listView.setAdapter(adapter);
-                                        }
+                                    @Override
+                                    public void run() {
 
-                                    });
-                                } catch (final Exception e) {
-                                    context.runOnUiThread(new Runnable() {
+                                        Pdialog.dismiss();
+                                        listView.setAdapter(adapter);
+                                        ((Button)v).setText("닫기");
+                                    }
 
-                                        @Override
-                                        public void run() {
+                                });
+                            } catch (final Exception e) {
+                                context.runOnUiThread(new Runnable() {
 
-                                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-                                        }
+                                    @Override
+                                    public void run() {
 
-                                    });
-                                }
+                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
 
-                    }
-                }).start();
+                                });
+                            }
 
+                        }
+                    }).start();
+                    isReview=false;
+                }else{
+
+                    listView.setAdapter(null);
+                    ((Button)v).setText("리뷰");
+                    isReview=true;
+                }
             }
         });
 

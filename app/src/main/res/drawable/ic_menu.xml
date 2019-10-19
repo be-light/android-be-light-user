@@ -8,11 +8,11 @@
       android:fillColor="#1998D5"/>
   <path
       android:pathData="M71.755,55H52.882c-0.829,0 -1.5,0.671 -1.5,1.5s0.671,1.5 1.5,1.5h18.873c0.828,0 1.5,-0.671 1.5,-1.5S72.583,55 71.755,55z"
-      android:fillColor="#FFFFFF"/>
+      android:fillColor="#ffffff"/>
   <path
       android:pathData="M71.755,61H52.882c-0.829,0 -1.5,0.671 -1.5,1.5c0,0.828 0.671,1.5 1.5,1.5h18.873c0.828,0 1.5,-0.672 1.5,-1.5C73.255,61.671 72.583,61 71.755,61z"
-      android:fillColor="#FFFFFF"/>
+      android:fillColor="#ffffff"/>
   <path
       android:pathData="M71.755,67H52.882c-0.829,0 -1.5,0.672 -1.5,1.5s0.671,1.5 1.5,1.5h18.873c0.828,0 1.5,-0.672 1.5,-1.5S72.583,67 71.755,67z"
-      android:fillColor="#FFFFFF"/>
+      android:fillColor="#ffffff"/>
 </vector>

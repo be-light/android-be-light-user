@@ -60,6 +60,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     HashMap<Marker, InfoWindow> hashmap;
     InfoWindowManager manager;
     LatLngBounds.Builder builder;
+    int checkInCount=1;
 
     void OvalProfile() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -166,7 +167,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/map/hosts?lat=" + position.latitude + "&lng=" + position.longitude, null, "GET");
+                                                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/map/hosts?latitude=" + position.latitude + "&longitude=" + position.longitude, null, "GET");
                                                         runOnUiThread(new Runnable() {
 
                                                             @Override
@@ -310,6 +311,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 startActivity(i);
             }
         });
+
+        findViewById(R.id.minus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkInCount<=2)
+                    checkInCount=2;
+                ((TextView)findViewById(R.id.count)).setText(--checkInCount+"");
+            }
+        });
+        findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((TextView)findViewById(R.id.count)).setText(++checkInCount+"");
+            }
+        });
     }
 
     @Override
@@ -322,18 +338,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+       // LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
-        Criteria criteria = new Criteria();
+        //Criteria criteria = new Criteria();
 
         // Getting the name of the best provider
-        String provider = locationManager.getBestProvider(criteria, false);
+       // String provider = locationManager.getBestProvider(criteria, false);
 
         // Getting Current Location
-        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
+       // @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
 
-        if (location != null) {
+       /* if (location != null) {
             // Getting latitude of the current location
             double latitude = location.getLatitude();
 
@@ -344,13 +360,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             final LatLng latLng = new LatLng(latitude, longitude);
 
-            /*VectorDrawableCompat vectorDrawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_makerpin, null);
+            *//*VectorDrawableCompat vectorDrawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_makerpin, null);
 
             Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
                     vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-            vectorDrawable.draw(canvas);*/
+            vectorDrawable.draw(canvas);*//*
 
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
@@ -366,7 +382,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             googleMap.addMarker(markerOptions);
             
             mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
-            /*new Thread(new Runnable() {
+            *//*new Thread(new Runnable() {
                 @Override
                 public void run() {
                     runOnUiThread(new Runnable() {
@@ -376,8 +392,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         }
                     });
                 }
-            }).start();*/
-        }
+            }).start();*//*
+        }*/
     }
 
     @Override

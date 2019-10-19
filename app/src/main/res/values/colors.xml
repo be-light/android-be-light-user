@@ -6,4 +6,6 @@
     <color name="main">#1998D5</color>
     <color name="main_gray">#E9E9E9</color>
     <color name="w">#ffffff</color>
+    <color name="b">#000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

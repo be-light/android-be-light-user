@@ -50,7 +50,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:background="#FFFFFF"
+                        android:background="@color/w"
                         android:text="체크인 날짜"
                         android:textAlignment="center" />
                 </LinearLayout>
@@ -68,6 +68,7 @@
                         android:textAlignment="center" />
 
                     <EditText
+                        android:background="@null"
                         android:id="@+id/checkInCount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -122,7 +123,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:background="#FFFFFF"
+                        android:background="@color/w"
                         android:text="체크아웃 날짜" />
                 </LinearLayout>
 
@@ -144,6 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:hint="클릭"
+                        android:background="@null"
                         android:textAlignment="center" />
                 </LinearLayout>
             </LinearLayout>
@@ -163,7 +165,7 @@
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
                 android:text="취소"
-                android:textColor="#ffffff" />
+                android:textColor="@color/w" />
 
             <Button
                 android:id="@+id/rcipt_btn"
@@ -174,7 +176,7 @@
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
                 android:text="확인"
-                android:textColor="#ffffff" />
+                android:textColor="@color/w" />
         </LinearLayout>
 
     </LinearLayout>

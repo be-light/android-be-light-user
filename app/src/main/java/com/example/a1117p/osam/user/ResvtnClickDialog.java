@@ -17,20 +17,20 @@ import androidx.annotation.NonNull;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 public class ResvtnClickDialog extends Dialog {
     static InfoWindowData drop_data = null, pick_data = null;
     static String drop_date, pick_date;
     InfoWindowData data;
     Activity context;
-    int checkInCount=0;
+    Integer checkInCount = 0;
 
 
-    public ResvtnClickDialog(@NonNull Activity activity, InfoWindowData data) {
+    public ResvtnClickDialog(@NonNull Activity activity, InfoWindowData data,int count) {
         super(activity);
         this.context = activity;
         this.data = data;
+        checkInCount=count;
     }
 
 
@@ -42,15 +42,11 @@ public class ResvtnClickDialog extends Dialog {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         getWindow().setAttributes(layoutParams);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        setOnDismissListener(new OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                checkInCount = Integer.parseInt(((EditText) findViewById(R.id.checkInCount)).getText().toString());
-            }
-        });
-        if(checkInCount!=0)
-            ((EditText) findViewById(R.id.checkInCount)).setText(checkInCount+"");
         setContentView(R.layout.resvtn_click_dialog);
+        if (checkInCount != 0){
+            ((TextView) findViewById(R.id.checkInCount)).setText(checkInCount + "");
+            ((TextView) findViewById(R.id.checkOutCount)).setText(checkInCount + "");
+        }
         final Button resvtn = findViewById(R.id.rcipt_btn);
         final Calendar cal = Calendar.getInstance();
 
@@ -91,7 +87,7 @@ public class ResvtnClickDialog extends Dialog {
                         pick_date = String.format("%04d-%02d-%02d", year, month + 1, date);
                         checkoutB.setText(pick_date);
                     }
-                }, cal.get(Calendar.YEAR) + 1, cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 
                 dialog.getDatePicker().setMinDate(new Date().getTime());    //입력한 날짜 이후로 클릭 안되게 옵션
                 dialog.show();
@@ -133,34 +129,34 @@ public class ResvtnClickDialog extends Dialog {
         resvtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final HashMap params = new HashMap<String, String>();
-                String paid = "6000";
-                String checkin = ((Button) findViewById(R.id.checkIn)).getText().toString();
-                String checkout = ((Button) findViewById(R.id.checkOut)).getText().toString();
-
-                params.put("checkIn", checkin);
-                params.put("checkOut", checkout);
-                params.put("paid", paid);
-                params.put("hostIdx", drop_data.hostIdx + "");
-                params.put("ghostIdx", pick_data.hostIdx + "");
-                params.put("itemCount", checkInCount);
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/user/order", params, true, "POST");
-                        context.runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-
-                                Toast.makeText(context, html, Toast.LENGTH_LONG).show();
-                            }
-
-                        });
-
+                if (pick_data == null || drop_data == null)
+                    dismiss();
+                else {
+                    if (drop_date==null||drop_date.equals("")) {
+                        Toast.makeText(context, "맡기는 날짜를 입력하세요.", Toast.LENGTH_LONG).show();
+                        return;
+                    }else if (pick_date==null||pick_date.equals("")) {
+                        Toast.makeText(context, "찾는 날짜를 입력하세요.", Toast.LENGTH_LONG).show();
+                        return;
+                    }else if (checkInCount == 0) {
+                        Toast.makeText(context, "물품의 개수를 입력하세요.", Toast.LENGTH_LONG).show();
+                        return;
                     }
-                }).start();
+                    Object[] datas = new Object[5];
+                    datas[0] = drop_data;
+                    datas[1] = pick_data;
+                    datas[2] = drop_date;
+                    datas[3] = pick_date;
+                    datas[4] = checkInCount;
+                    Dialog dialog = new ResvtnRegisterDialog(context, datas);
+                    WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                    lp.copyFrom(dialog.getWindow().getAttributes());
+                    lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                    lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                    dialog.show();
+                    dialog.getWindow().setAttributes(lp);
+                    dismiss();
+                }
             }
         });
 
