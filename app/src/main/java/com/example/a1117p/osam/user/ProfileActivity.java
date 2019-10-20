@@ -1,6 +1,9 @@
 package com.example.a1117p.osam.user;
 
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
@@ -18,7 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.HashMap;
-import android.app.ProgressDialog;
+import java.util.regex.Pattern;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -35,7 +38,9 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        final ProgressDialog dialog = new ProgressDialog( ProfileActivity.this);
+        final String pwPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{9,}$", emailPattern = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$", phonePattern = "^(\\d{3}|\\d{4})[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$";
+
+        final ProgressDialog dialog = new ProgressDialog(ProfileActivity.this);
         dialog.setMessage("프로필을 불러오는 중 입니다.");
 
         dialog.show();
@@ -86,8 +91,16 @@ public class ProfileActivity extends AppCompatActivity {
                 if (email.equals("")) {
                     Toast.makeText(ProfileActivity.this, "이메일을 입력하세요", Toast.LENGTH_LONG).show();
                     return;
+                }else if (!Pattern.compile(emailPattern).matcher(email).matches()) {
+
+                    Toast.makeText(ProfileActivity.this, "이메일의 형식이 정상적이지 않습니다.", Toast.LENGTH_LONG).show();
+                    return;
                 } else if (phone.equals("")) {
                     Toast.makeText(ProfileActivity.this, "전화번호를 입력하세요", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (!Pattern.compile(phonePattern).matcher(phone).matches()) {
+
+                    Toast.makeText(ProfileActivity.this, "전화번호의 형식이 정상적이지 않습니다.", Toast.LENGTH_LONG).show();
                     return;
                 } else if (address.equals("")) {
                     Toast.makeText(ProfileActivity.this, "주소를 입력하세요", Toast.LENGTH_LONG).show();
@@ -96,13 +109,23 @@ public class ProfileActivity extends AppCompatActivity {
                     if (passwd_confirm.equals("")) {
                         Toast.makeText(ProfileActivity.this, "비밀번호확인을 입력하세요", Toast.LENGTH_LONG).show();
                         return;
+                    }else if (!Pattern.compile(pwPattern).matcher(passwd).matches()) {
+                        new AlertDialog.Builder(ProfileActivity.this).setMessage("비밀번호는 영문자,숫자,특수문자를 1개 이상씩 포함하여 9자리 이상이여야 합니다.")
+                                .setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                }).create().show();
+
+                        return;
                     } else if (!passwd_confirm.equals(passwd)) {
                         Toast.makeText(ProfileActivity.this, "비밀번호와 비밀번호 확인이 같지않습니다.", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
-                final ProgressDialog dialog = new ProgressDialog( ProfileActivity.this);
-                dialog.setMessage("프로필을 불러오는 중 입니다.");
+                final ProgressDialog dialog = new ProgressDialog(ProfileActivity.this);
+                dialog.setMessage("프로필을 수정하는 중 입니다.");
 
                 dialog.show();
                 final HashMap params = new HashMap<String, String>();
