@@ -1,6 +1,6 @@
 package com.example.a1117p.osam.user;
 
-import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,10 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.location.Address;
-import android.location.Criteria;
 import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,7 +17,6 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.app.ProgressDialog;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +56,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     HashMap<Marker, InfoWindow> hashmap;
     InfoWindowManager manager;
     LatLngBounds.Builder builder;
-    int checkInCount=1;
+    int checkInCount = 1;
 
     void OvalProfile() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -99,15 +95,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         manager = mMapFragment.infoWindowManager();
 
         OvalProfile();
-        ((TextView)findViewById(R.id.name)).setText(RequestHttpURLConnection.name);
-        ((TextView)findViewById(R.id.email)).setText(RequestHttpURLConnection.email);
+        ((TextView) findViewById(R.id.name)).setText(RequestHttpURLConnection.name);
+        ((TextView) findViewById(R.id.email)).setText(RequestHttpURLConnection.email);
         findViewById(R.id.search_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 issearch = true;
-                final ProgressDialog dialog = new ProgressDialog( MapActivity.this);
+                final ProgressDialog dialog = new ProgressDialog(MapActivity.this);
                 dialog.setMessage("검색중입니다.");
-        
+
                 dialog.show();
                 mGoogleMap.clear();
                 mGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -130,7 +126,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Geocoder geocoder = new Geocoder(MapActivity.this);
                 try {
                     List<Address> addressList = geocoder.getFromLocationName(search, 20);
-                    
+
                     dialog.dismiss();
                     if (addressList.size() == 0) {
                         Toast.makeText(MapActivity.this, "검색결과없음", Toast.LENGTH_LONG).show();
@@ -160,9 +156,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             public void onClick(DialogInterface dialog, int which) {
                                                 issearch = false;
                                                 final LatLng position = selectedMarker.getPosition();
-                                                final ProgressDialog Pdialog = new ProgressDialog( MapActivity.this);
+                                                final ProgressDialog Pdialog = new ProgressDialog(MapActivity.this);
                                                 Pdialog.setMessage("검색중입니다.");
-                                        
+
                                                 Pdialog.show();
                                                 new Thread(new Runnable() {
                                                     @Override
@@ -185,7 +181,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                                     for (Object o : jsonArr) {
                                                                         JSONObject object = (JSONObject) o;
                                                                         LatLng latLng = new LatLng(Double.parseDouble((String) object.get("hostLatitude")), Double.parseDouble((String) object.get("hostLongitude")));
-                                                                        InfoWindowData data = new InfoWindowData((String) object.get("hostAddress"), (String) object.get("hostName"), (String) object.get("hostTel"), (String) object.get("hostPostalCode"), (Long) object.get("hostIdx"));
+                                                                        InfoWindowData data = new InfoWindowData((String) object.get("hostAddress"), (String) object.get("hostName"), (String) object.get("hostTel"), (String) object.get("hostPostalCode"), (String) object.get("hostIntro"), (Long) object.get("hostIdx"));
                                                                         final Marker marker = mGoogleMap.addMarker(new MarkerOptions()
                                                                                 .position(latLng)
                                                                                 .icon(bitmapDescriptor)
@@ -315,15 +311,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         findViewById(R.id.minus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkInCount<=2)
-                    checkInCount=2;
-                ((TextView)findViewById(R.id.count)).setText(--checkInCount+"");
+                if (checkInCount <= 2)
+                    checkInCount = 2;
+                ((TextView) findViewById(R.id.count)).setText(--checkInCount + "");
             }
         });
         findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TextView)findViewById(R.id.count)).setText(++checkInCount+"");
+                ((TextView) findViewById(R.id.count)).setText(++checkInCount + "");
             }
         });
     }
@@ -338,16 +334,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
-       // LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        // LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
         //Criteria criteria = new Criteria();
 
         // Getting the name of the best provider
-       // String provider = locationManager.getBestProvider(criteria, false);
+        // String provider = locationManager.getBestProvider(criteria, false);
 
         // Getting Current Location
-       // @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
+        // @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
 
        /* if (location != null) {
             // Getting latitude of the current location

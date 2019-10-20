@@ -29,6 +29,7 @@ public class ResvtnRegisterDialog extends Dialog {
     static String drop_date, pick_date;
     Activity context;
     Integer checkInCount;
+    long total;
 
     /*
                     final HashMap params = new HashMap<String, String>();
@@ -71,7 +72,6 @@ public class ResvtnRegisterDialog extends Dialog {
     }
 
 
-    long total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
