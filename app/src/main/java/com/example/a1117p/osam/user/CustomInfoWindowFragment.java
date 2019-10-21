@@ -134,5 +134,7 @@ public class CustomInfoWindowFragment extends Fragment {
         ((TextView) view.findViewById(R.id.host_name)).setText(data.hostName);
         ((TextView) view.findViewById(R.id.host_num)).setText(data.hostTel);
         ((TextView) view.findViewById(R.id.host_addr)).setText(data.hostAddress);
+        ((TextView) view.findViewById(R.id.term)).setText(data.term);
+        ((TextView) view.findViewById(R.id.hostIntro)).setText(data.hostIntro);
     }
 }

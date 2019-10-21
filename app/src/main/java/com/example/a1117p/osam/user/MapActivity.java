@@ -181,7 +181,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                                     for (Object o : jsonArr) {
                                                                         JSONObject object = (JSONObject) o;
                                                                         LatLng latLng = new LatLng(Double.parseDouble((String) object.get("hostLatitude")), Double.parseDouble((String) object.get("hostLongitude")));
-                                                                        InfoWindowData data = new InfoWindowData((String) object.get("hostAddress"), (String) object.get("hostName"), (String) object.get("hostTel"), (String) object.get("hostPostalCode"), (String) object.get("hostIntro"), (Long) object.get("hostIdx"));
+                                                                        InfoWindowData data = new InfoWindowData((String) object.get("hostAddress"), (String) object.get("hostName"), (String) object.get("hostTel"), (String) object.get("hostPostalCode"), (String) object.get("hostIntro"), "open  "+object.get("openTime")+" ~ close  "+ object.get("closeTime"),(Long) object.get("hostIdx"));
                                                                         final Marker marker = mGoogleMap.addMarker(new MarkerOptions()
                                                                                 .position(latLng)
                                                                                 .icon(bitmapDescriptor)

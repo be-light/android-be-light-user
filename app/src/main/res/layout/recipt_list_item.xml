@@ -10,34 +10,37 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="0.8"
         android:src="@drawable/cat"
         android:adjustViewBounds="true" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:layout_height="match_parent">
 
         <TextView
+            android:gravity="center"
             android:textColor="@color/b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/year"/>
 
         <TextView
+            android:gravity="center"
             android:textColor="@color/b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/count"/>
         <LinearLayout
-            android:orientation="horizontal"
+           android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:background="@drawable/roundedview"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
@@ -72,6 +75,7 @@
                 android:textColor="@color/b"
                 android:text=">"/>
             <LinearLayout
+                android:background="@drawable/roundedview"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"

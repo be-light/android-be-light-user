@@ -2,100 +2,113 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
+    android:orientation="horizontal"
     android:padding="10dp"
-    android:orientation="horizontal">
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:src="@drawable/cat"
-        android:adjustViewBounds="true" />
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:src="@drawable/cat" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:gravity="center"
-        android:paddingLeft="10dp"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
 
         <TextView
-            android:textColor="@color/b"
-            android:textSize="20sp"
+            android:id="@+id/year"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/year"/>
+            android:gravity="center"
+            android:textColor="@color/b"
+            android:textSize="20sp" />
 
         <TextView
-            android:textColor="@color/b"
+            android:id="@+id/count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/count"/>
+            android:gravity="center"
+            android:textColor="@color/b" />
+
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="0dp"
-                android:orientation="vertical"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/roundedview_slim"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <TextView
-                    android:textColor="@color/b"
+                    android:gravity="center"
+                    android:id="@+id/checkIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/checkIn" />
+                    android:textColor="@color/b" />
 
                 <TextView
-                    android:textColor="@color/b"
+                    android:gravity="center"
+                    android:id="@+id/drop_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/drop_name" />
+                    android:textColor="@color/b" />
 
                 <TextView
-                    android:textColor="@color/b"
+                    android:gravity="center"
+                    android:id="@+id/drop_addr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/drop_addr" />
+                    android:textColor="@color/b" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:textSize="20sp"
                 android:gravity="center"
+                android:text=">"
                 android:textColor="@color/b"
-                android:text=">"/>
+                android:textSize="20sp" />
+
             <LinearLayout
                 android:layout_width="0dp"
-                android:orientation="vertical"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/roundedview_slim"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <TextView
-                    android:textColor="@color/b"
+                    android:gravity="center"
+                    android:id="@+id/checkOut"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/checkOut" />
+                    android:textColor="@color/b" />
 
                 <TextView
-                    android:textColor="@color/b"
+                    android:gravity="center"
+                    android:id="@+id/pick_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pick_name" />
+                    android:textColor="@color/b" />
 
                 <TextView
-                    android:textColor="@color/b"
+                    android:gravity="center"
+                    android:id="@+id/pick_addr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pick_addr" />
+                    android:textColor="@color/b" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

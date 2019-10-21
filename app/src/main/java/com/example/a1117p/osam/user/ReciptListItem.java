@@ -32,7 +32,7 @@ private long itemCount;
         paid = String.valueOf(object.get("paid"));
         hostUserPhoneNumber = (String) object.get("hostUserPhoneNumber");
         gHostUserPhoneNumber = (String) object.get("gHostUserPhoneNumber");
-        itemCount = (Long)object.get("itemCount");
+        itemCount = 1;
     }
 
 
