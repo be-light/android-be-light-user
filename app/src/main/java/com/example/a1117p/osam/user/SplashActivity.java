@@ -1,7 +1,9 @@
 package com.example.a1117p.osam.user;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -22,12 +24,13 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import static java.lang.Thread.sleep;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences preferences;
-
+    final String pwPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{9,}$";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,16 @@ public class SplashActivity extends AppCompatActivity {
                             return;
                         } else if (passwd.equals("")) {
                             Toast.makeText(SplashActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
+                            return;
+                        }else if (!Pattern.compile(pwPattern).matcher(passwd).matches()) {
+                            new AlertDialog.Builder(SplashActivity.this).setMessage("비밀번호는 영문자,숫자,특수문자를 1개 이상씩 포함하여 9자리 이상이여야 합니다.")
+                                    .setNeutralButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+                                        }
+                                    }).create().show();
+
                             return;
                         }
                         final ProgressDialog dialog = new ProgressDialog(SplashActivity.this);
@@ -135,9 +148,9 @@ public class SplashActivity extends AppCompatActivity {
         //startActivity(i);
         //finish();
         if (b) {
-            String id =preferences.getString("id", null);
+            String id = preferences.getString("id", null);
             String passwd = preferences.getString("passwd", null);
-            if (id == null ||  passwd== null) {
+            if (id == null || passwd == null) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -159,11 +172,15 @@ public class SplashActivity extends AppCompatActivity {
                         });
                     }
                 }).start();
-            }
-            else{
+            } else {
                 final ProgressDialog dialog = new ProgressDialog(SplashActivity.this);
                 dialog.setMessage("자동 로그인중입니다.");
-
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        finish();
+                    }
+                });
                 dialog.show();
                 final HashMap params = new HashMap<String, String>();
 

@@ -17,12 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/w"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/w"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -76,8 +79,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/main_gray" />
 
             <TextView
@@ -89,6 +91,11 @@
                 android:lines="3"
                 android:scrollHorizontally="false" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/main_gray" />
+
 
         <ListView
             android:id="@+id/review_list"

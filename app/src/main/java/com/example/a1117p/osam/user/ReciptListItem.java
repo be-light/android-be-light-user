@@ -18,7 +18,7 @@ public class ReciptListItem implements Parcelable {
         }
     };
     private String hostaddress, hostPostalCode, hostName, ghostaddress, ghostPostalCode, ghostName, reciptNumber, checkin, checkOut, paid, hostUserPhoneNumber, gHostUserPhoneNumber;
-private long itemCount;
+    private long itemCount,hostIdx,ghostidx,statusCode;
     ReciptListItem(JSONObject object) {
         hostaddress = (String) object.get("hostaddress");
         hostPostalCode = (String) object.get("hostPostalCode");
@@ -32,7 +32,10 @@ private long itemCount;
         paid = String.valueOf(object.get("paid"));
         hostUserPhoneNumber = (String) object.get("hostUserPhoneNumber");
         gHostUserPhoneNumber = (String) object.get("gHostUserPhoneNumber");
-        itemCount = 1;
+        itemCount = (Long)object.get("itemCount");
+        hostIdx = (Long)object.get("hostIdx");
+        ghostidx = (Long)object.get("gHostIdx");
+        statusCode=(Long)object.get("statusCode");
     }
 
 
@@ -50,6 +53,8 @@ private long itemCount;
         hostUserPhoneNumber = in.readString();
         gHostUserPhoneNumber = in.readString();
         itemCount = in.readLong();
+        hostIdx = in.readLong();
+        ghostidx = in.readLong();
     }
 
     @Override
@@ -124,5 +129,15 @@ private long itemCount;
         dest.writeString(hostUserPhoneNumber);
         dest.writeString(gHostUserPhoneNumber);
         dest.writeLong(itemCount);
+        dest.writeLong(hostIdx);
+        dest.writeLong(ghostidx);
+    }
+
+    public long getHostIdx() {
+        return hostIdx;
+    }
+
+    public long getGhostidx() {
+        return ghostidx;
     }
 }

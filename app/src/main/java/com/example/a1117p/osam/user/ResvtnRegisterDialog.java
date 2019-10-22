@@ -87,18 +87,30 @@ public class ResvtnRegisterDialog extends Dialog {
         ((TextView) findViewById(R.id.drop_addr2)).setText(drop_data.hostAddress);
 
         ((TextView) findViewById(R.id.drop_num)).setText(drop_data.hostTel);
-        ((TextView) findViewById(R.id.drop_dist)).setText("km");
-        ((TextView) findViewById(R.id.drop_score_star)).setText("★★★★★");
-        ((TextView) findViewById(R.id.drop_score)).setText("5.0");
+        ((TextView) findViewById(R.id.drop_dist)).setText(String.format("%.1f",drop_data.dist)+"km");
+        int star= (int) drop_data.score;
+        String stars="";
+        for(int i=0;i<star;i++)
+            stars+="★";
+        if(drop_data.score-star>0.5)
+            stars+="☆";
+        ((TextView) findViewById(R.id.drop_score_star)).setText(stars);
+        ((TextView) findViewById(R.id.drop_score)).setText(String.format("%.1f",drop_data.score));
 
         ((TextView) findViewById(R.id.pick_name)).setText(pick_data.hostName);
         ((TextView) findViewById(R.id.pick_addr)).setText(pick_data.hostAddress);
         ((TextView) findViewById(R.id.pick_addr2)).setText(pick_data.hostAddress);
 
         ((TextView) findViewById(R.id.pick_num)).setText(pick_data.hostTel);
-        ((TextView) findViewById(R.id.pick_dist)).setText("km");
-        ((TextView) findViewById(R.id.pick_score_star)).setText("★★★★★");
-        ((TextView) findViewById(R.id.pick_score)).setText("5.0");
+        ((TextView) findViewById(R.id.pick_dist)).setText(String.format("%.1f",pick_data.dist)+"km");
+        star= (int) pick_data.score;
+        stars="";
+        for(int i=0;i<star;i++)
+            stars+="★";
+        if(pick_data.score-star>0.5)
+            stars+="☆";
+        ((TextView) findViewById(R.id.pick_score_star)).setText(stars);
+        ((TextView) findViewById(R.id.pick_score)).setText(String.format("%.1f",pick_data.score));
 
 
         findViewById(R.id.minus).setOnClickListener(new View.OnClickListener() {
@@ -199,7 +211,7 @@ public class ResvtnRegisterDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 final ProgressDialog dialog = new ProgressDialog(context);
-                dialog.setMessage("검색중입니다.");
+                dialog.setMessage("등록중입니다.");
 
                 dialog.show();
                 final HashMap<String, String> params = new HashMap<>();
@@ -271,6 +283,8 @@ public class ResvtnRegisterDialog extends Dialog {
 
         long diff = endDate.getTime() - beginDate.getTime();
         long diffDays = diff / (24 * 60 * 60 * 1000) - 1;
+        if(diffDays<0)
+            diffDays=0;
 
         ((TextView) findViewById(R.id.default_calc)).setText(checkInCount + " objects x 1Day x 7000won");
         ((TextView) findViewById(R.id.default_price)).setText((checkInCount * 7000) + "won");

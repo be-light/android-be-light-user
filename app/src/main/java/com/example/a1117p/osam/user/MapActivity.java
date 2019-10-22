@@ -1,14 +1,19 @@
 package com.example.a1117p.osam.user;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -23,6 +28,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.appolica.interactiveinfowindow.InfoWindow;
 import com.appolica.interactiveinfowindow.InfoWindowManager;
@@ -68,14 +74,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     void downReview() {
         findViewById(R.id.review).setClickable(false);
-        findViewById(R.id.down).setClickable(false);
-        findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim));
+        //findViewById(R.id.down).setClickable(false);
+       // findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim));
     }
 
     void downReview_fast() {
-        findViewById(R.id.review).setClickable(false);
-        findViewById(R.id.down).setClickable(false);
-        findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim_fast));
+//        findViewById(R.id.review).setClickable(false);
+       // findViewById(R.id.down).setClickable(false);
+        //findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim_fast));
     }
 
     @Override
@@ -91,7 +97,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         mMapFragment = (MapInfoWindowFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
-        downReview_fast();
+        //downReview_fast();
         manager = mMapFragment.infoWindowManager();
 
         OvalProfile();
@@ -181,7 +187,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                                                     for (Object o : jsonArr) {
                                                                         JSONObject object = (JSONObject) o;
                                                                         LatLng latLng = new LatLng(Double.parseDouble((String) object.get("hostLatitude")), Double.parseDouble((String) object.get("hostLongitude")));
-                                                                        InfoWindowData data = new InfoWindowData((String) object.get("hostAddress"), (String) object.get("hostName"), (String) object.get("hostTel"), (String) object.get("hostPostalCode"), (String) object.get("hostIntro"), "open  "+object.get("openTime")+" ~ close  "+ object.get("closeTime"),(Long) object.get("hostIdx"));
+                                                                        InfoWindowData data = new InfoWindowData(object);
                                                                         final Marker marker = mGoogleMap.addMarker(new MarkerOptions()
                                                                                 .position(latLng)
                                                                                 .icon(bitmapDescriptor)
@@ -222,7 +228,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                                                                         @Override
                                                                         public void run() {
-                                                                            new AlertDialog.Builder(MapActivity.this).setMessage(e.getMessage()).create().show();
+                                                                            Toast.makeText(MapActivity.this, "검색결과가 없습니다.", Toast.LENGTH_LONG).show();
+
                                                                         }
 
                                                                     });
@@ -289,6 +296,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 startActivity(i);
             }
         });
+
+        findViewById(R.id.review_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(MapActivity.this, ReviewListActivity.class);
+                startActivity(i);
+            }
+        });
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -334,18 +350,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
-        // LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
-        //Criteria criteria = new Criteria();
+        Criteria criteria = new Criteria();
 
         // Getting the name of the best provider
-        // String provider = locationManager.getBestProvider(criteria, false);
+         String provider = locationManager.getBestProvider(criteria, false);
 
         // Getting Current Location
-        // @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
+         @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
 
-       /* if (location != null) {
+        if (location != null) {
             // Getting latitude of the current location
             double latitude = location.getLatitude();
 
@@ -356,40 +372,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             final LatLng latLng = new LatLng(latitude, longitude);
 
-            *//*VectorDrawableCompat vectorDrawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_makerpin, null);
+            VectorDrawableCompat vectorDrawable = VectorDrawableCompat.create(getResources(), R.drawable.ic_makerpin, null);
 
             Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
                     vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-            vectorDrawable.draw(canvas);*//*
+            vectorDrawable.draw(canvas);
 
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.icon(bitmapDescriptor);
             markerOptions.title("내위치");
 
-            //InfoWindowData data = new InfoWindowData("1", "1", "1", "1", 1);
-
-            //InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
-            //final InfoWindow infoWindow = new InfoWindow(googleMap.addMarker(markerOptions), markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
-            // Shows the InfoWindow or hides it if it is already opened.
-            //manager.toggle(infoWindow, true);
             googleMap.addMarker(markerOptions);
             
             mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
-            *//*new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
 
-                        }
-                    });
-                }
-            }).start();*//*
-        }*/
+        }
     }
 
     @Override

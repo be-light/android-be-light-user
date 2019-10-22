@@ -175,7 +175,7 @@
                 android:background="@drawable/stadiumbutton"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
-                android:text="확인"
+                android:text="예약"
                 android:textColor="@color/w" />
         </LinearLayout>
 

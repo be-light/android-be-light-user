@@ -65,6 +65,7 @@ public class ReciptMgtActivity extends AppCompatActivity {
                 Intent intent = new Intent(ReciptMgtActivity.this,ReciptEditActivity.class);
                 intent.putExtra("item",item);
                 startActivity(intent);
+                finish();
             }
         });
     }

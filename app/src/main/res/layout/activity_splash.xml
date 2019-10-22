@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:background="@color/w">
 
 
@@ -10,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
@@ -23,16 +23,10 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Be-light"
-                android:textAlignment="center"
-                android:textColor="@color/main"
-                android:textSize="50sp" />
 
             <LinearLayout
                 android:id="@+id/login_form"
@@ -126,4 +120,4 @@
         </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

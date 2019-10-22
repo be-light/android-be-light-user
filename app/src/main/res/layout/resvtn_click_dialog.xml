@@ -191,7 +191,7 @@
             android:layout_weight="1"
             android:background="@drawable/stadiumbutton_slim"
             android:minHeight="0dp"
-            android:text="확인"
+            android:text="예약"
             android:textColor="@color/w" />
     </LinearLayout>
 

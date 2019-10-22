@@ -1,7 +1,9 @@
 package com.example.a1117p.osam.user;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,9 +22,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class ReciptEditActivity extends AppCompatActivity {
-    long checkInCount;
     static String drop_date, pick_date;
-
+    long checkInCount;
     long total;
 
     @Override
@@ -33,30 +34,24 @@ public class ReciptEditActivity extends AppCompatActivity {
 
         final Button checkin = findViewById(R.id.checkIn);
         final Button checkout = findViewById(R.id.checkOut);
-        drop_date=item.getCheckin();
-        pick_date=item.getCheckOut();
+        drop_date = item.getCheckin();
+        pick_date = item.getCheckOut();
         checkin.setText(drop_date);
         checkout.setText(pick_date);
-        ((TextView)findViewById(R.id.drop_name)).setText(item.getHostName());
-        ((TextView)findViewById(R.id.drop_addr)).setText(item.getHostaddress());
-        ((TextView)findViewById(R.id.drop_addr2)).setText(item.getHostaddress());
-        ((TextView)findViewById(R.id.drop_num)).setText(item.getHostUserPhoneNumber());
-        ((TextView)findViewById(R.id.drop_dist)).setText("km");
-        ((TextView)findViewById(R.id.drop_score_star)).setText("★★★★★");
-        ((TextView)findViewById(R.id.drop_score)).setText("5.0");
+        ((TextView) findViewById(R.id.drop_name)).setText(item.getHostName());
+        ((TextView) findViewById(R.id.drop_addr)).setText(item.getHostaddress());
+        ((TextView) findViewById(R.id.drop_addr2)).setText(item.getHostaddress());
+        ((TextView) findViewById(R.id.drop_num)).setText(item.getHostUserPhoneNumber());
 
-        ((TextView)findViewById(R.id.pick_name)).setText(item.getGhostName());
-        ((TextView)findViewById(R.id.pick_addr)).setText(item.getGhostaddress());
-        ((TextView)findViewById(R.id.pick_addr2)).setText(item.getGhostaddress());
-        ((TextView)findViewById(R.id.pick_num)).setText(item.getgHostUserPhoneNumber());
-        ((TextView)findViewById(R.id.pick_dist)).setText("km");
-        ((TextView)findViewById(R.id.pick_score_star)).setText("★★★★★");
-        ((TextView)findViewById(R.id.pick_score)).setText("5.0");
+        ((TextView) findViewById(R.id.pick_name)).setText(item.getGhostName());
+        ((TextView) findViewById(R.id.pick_addr)).setText(item.getGhostaddress());
+        ((TextView) findViewById(R.id.pick_addr2)).setText(item.getGhostaddress());
+        ((TextView) findViewById(R.id.pick_num)).setText(item.getgHostUserPhoneNumber());
 
-        checkInCount=item.getItemCount();
-        ((TextView)findViewById(R.id.count)).setText(checkInCount+"");
+        checkInCount = item.getItemCount();
+        ((TextView) findViewById(R.id.count)).setText(checkInCount + "");
 
-        total= Long.parseLong(item.getPaid());
+        total = Long.parseLong(item.getPaid());
 
         findViewById(R.id.minus).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +79,9 @@ public class ReciptEditActivity extends AppCompatActivity {
                 DatePickerDialog dialog = new DatePickerDialog(ReciptEditActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                        checkin.setText(String.format("%04d-%02d-%02d", year, month + 1, date));
+                        drop_date = String.format("%04d-%02d-%02d", year, month + 1, date);
+                        checkin.setText(drop_date);
+                        refreshPrice();
                     }
                 }, cal[0], cal[1] - 1, cal[2]);
 
@@ -104,7 +101,9 @@ public class ReciptEditActivity extends AppCompatActivity {
                 DatePickerDialog dialog = new DatePickerDialog(ReciptEditActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                        checkout.setText(String.format("%04d-%02d-%02d", year, month + 1, date));
+                        pick_date = String.format("%04d-%02d-%02d", year, month + 1, date);
+                        checkout.setText(pick_date);
+                        refreshPrice();
                     }
                 }, cal[0], cal[1] - 1, cal[2]);
 
@@ -114,55 +113,125 @@ public class ReciptEditActivity extends AppCompatActivity {
 
             }
         });
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null, date2;
+        try {
+            date1 = format.parse(pick_date);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        date2 = new Date();
+        if (date1.compareTo(date2) >= 0) {
+            findViewById(R.id.edit_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String checkIn = ((Button) findViewById(R.id.checkIn)).getText().toString();
+                    String checkOut = ((Button) findViewById(R.id.checkOut)).getText().toString();
+                    String itemCount = ((TextView) findViewById(R.id.count)).getText().toString();
+                    final HashMap params = new HashMap<String, String>();
+                    params.put("reciptNumber", item.getReciptNumber());
+                    params.put("checkIn", checkIn);
+                    params.put("checkOut", checkOut);
+                    params.put("itemCount", itemCount);
+                    final ProgressDialog dialog = new ProgressDialog(ReciptEditActivity.this);
+                    dialog.setMessage("예약내역 수정 중 입니다.");
 
-        findViewById(R.id.edit_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String checkIn = ((Button) findViewById(R.id.checkIn)).getText().toString();
-                String checkOut = ((Button) findViewById(R.id.checkOut)).getText().toString();
-                String itemCount = ((TextView) findViewById(R.id.count)).getText().toString();
-                final HashMap params = new HashMap<String, String>();
-                params.put("reciptNumber", item.getReciptNumber());
-                params.put("checkIn", checkIn);
-                params.put("checkOut", checkOut);
-                params.put("itemCount", itemCount);
-                final ProgressDialog dialog = new ProgressDialog(ReciptEditActivity.this);
-                dialog.setMessage("예약내역 수정 중 입니다.");
+                    dialog.show();
 
-                dialog.show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/user/order?_method=PUT", params, true, "POST");
+                            runOnUiThread(new Runnable() {
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/user/order?_method=PUT", params, true, "POST");
-                        runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                dialog.dismiss();
-                                JSONParser parser = new JSONParser();
-                                try {
-                                    JSONObject object = (JSONObject) parser.parse(html);
-                                    Long status = (Long) object.get("status");
-                                    if (status == 200) {
-                                        Toast.makeText(ReciptEditActivity.this, "예약내역 수정에 성공하였습니다.", Toast.LENGTH_LONG).show();
-                                        finish();
-                                    } else {
-                                        Toast.makeText(ReciptEditActivity.this, "예약내역 수정에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                    JSONParser parser = new JSONParser();
+                                    try {
+                                        JSONObject object = (JSONObject) parser.parse(html);
+                                        Long status = (Long) object.get("status");
+                                        if (status == 200) {
+                                            Toast.makeText(ReciptEditActivity.this, "예약내역 수정에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(ReciptEditActivity.this, ReciptMgtActivity.class));
+                                            finish();
+                                        } else {
+                                            Toast.makeText(ReciptEditActivity.this, "예약내역 수정에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(ReciptEditActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
                                     }
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(ReciptEditActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
                                 }
-                            }
 
-                        });
+                            });
 
-                    }
-                }).start();
-            }
-        });
+                        }
+                    }).start();
+                }
+            });
+            findViewById(R.id.delete_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final ProgressDialog dialog = new ProgressDialog(ReciptEditActivity.this);
+                    dialog.setMessage("예약내역 삭제 중 입니다.");
 
+                    dialog.show();
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final HashMap params = new HashMap<String, String>();
+
+                            params.put("reciptNumber", item.getReciptNumber());
+                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/user/order?_method=DELETE", params, true, "POST");
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                    JSONParser parser = new JSONParser();
+                                    try {
+                                        JSONObject object = (JSONObject) parser.parse(html);
+                                        Long status = (Long) object.get("status");
+                                        if (status == 200) {
+                                            Toast.makeText(ReciptEditActivity.this, "예약내역 삭제에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(ReciptEditActivity.this, ReciptMgtActivity.class));
+                                            finish();
+                                        } else {
+                                            Toast.makeText(ReciptEditActivity.this, "예약내역 삭제에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(ReciptEditActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                            });
+
+                        }
+                    }).start();
+                }
+            });
+            findViewById(R.id.review_btn1).setVisibility(View.GONE);
+            findViewById(R.id.review_btn2).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.edit_btns).setVisibility(View.GONE);
+            findViewById(R.id.review_btn1).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new ReviewRegisterDialog(ReciptEditActivity.this, item.getHostName(), item.getHostaddress(), item.getHostUserPhoneNumber(), "", item.getHostIdx(), 5);
+                    dialog.show();
+                }
+            });
+            findViewById(R.id.review_btn2).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new ReviewRegisterDialog(ReciptEditActivity.this, item.getGhostName(), item.getGhostaddress(), item.getgHostUserPhoneNumber(), "", item.getGhostidx(), 5);
+                    dialog.show();
+                }
+            });
+        }
         refreshPrice();
     }
 

@@ -28,7 +28,7 @@ public class MessagingService extends FirebaseMessagingService {
         if (data.size() > 0) {
             NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
-            Intent notificationIntent = new Intent(this, MainActivity.class);
+            Intent notificationIntent = new Intent(this, SplashActivity.class);
             notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK) ;
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,  PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -54,7 +54,7 @@ public class MessagingService extends FirebaseMessagingService {
                 assert notificationManager != null;
                 notificationManager.createNotificationChannel(channel);
 
-            }else builder.setSmallIcon(R.mipmap.ic_launcher);
+            }else builder.setSmallIcon(R.drawable.logo);
 
             assert notificationManager != null;
             notificationManager.notify(9999, builder.build());

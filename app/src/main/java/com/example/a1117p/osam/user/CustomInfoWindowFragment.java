@@ -77,6 +77,10 @@ public class CustomInfoWindowFragment extends Fragment {
                                 JSONParser jsonParser = new JSONParser();
                                 JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
                                 final ReviewListAdapter adapter = new ReviewListAdapter(jsonArray);
+                                if(adapter.getCount()==0){
+                                    ((Button)v).setText("리뷰");
+                                    isReview=true;
+                                }
                                 context.runOnUiThread(new Runnable() {
 
                                     @Override
