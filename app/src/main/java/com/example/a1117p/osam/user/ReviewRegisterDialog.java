@@ -25,6 +25,7 @@ public class ReviewRegisterDialog extends Dialog {
     ArrayList<Button> stars;
     Activity context;
     long hostidx, reviewScore = 5;
+    MyReviewListItem item=null;
 
     public ReviewRegisterDialog(@NonNull Activity activity, String hostname, String hostAddress, String hostTel,String review, long hostidx,long reviewScore) {
         super(activity);
@@ -36,6 +37,11 @@ public class ReviewRegisterDialog extends Dialog {
         this.review=review;
         this.reviewScore=reviewScore;
     }
+    public ReviewRegisterDialog(@NonNull Activity activity,MyReviewListItem item){
+        super(activity);
+        this.context=activity;
+        this.item=item;
+    }
 
 
     @Override
@@ -46,13 +52,15 @@ public class ReviewRegisterDialog extends Dialog {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         getWindow().setAttributes(layoutParams);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        setContentView(R.layout.resvtn_click_dialog);
+        setContentView(R.layout.review_register_dialog);
         stars = new ArrayList<>();
         stars.add((Button) findViewById(R.id.star1));
         stars.add((Button) findViewById(R.id.star2));
         stars.add((Button) findViewById(R.id.star3));
         stars.add((Button) findViewById(R.id.star4));
         stars.add((Button) findViewById(R.id.star5));
+        if(item!=null)
+            reviewScore = item.getReviewScore();
         for (int i = 0; i < 5; i++) {
             final int finalI = i;
             Button tmp=stars.get(i);
@@ -72,66 +80,134 @@ public class ReviewRegisterDialog extends Dialog {
             else
                 tmp.setText("☆");
         }
-        ((TextView) findViewById(R.id.host_name)).setText(hostname);
-        ((TextView) findViewById(R.id.host_addr)).setText(hostAddress);
-        ((TextView) findViewById(R.id.host_num)).setText(hostTel);
-        ((EditText)findViewById(R.id.review)).setText(review);
-        findViewById(R.id.review_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String review = ((EditText) findViewById(R.id.review)).getText().toString();
-                if (review.equals("")) {
-                    Toast.makeText(context, "내용을 입력하세요", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                final HashMap<String, String> params = new HashMap<>();
-                params.put("review", review);
-                params.put("reviewScore", reviewScore + "");
-                params.put("hostIdx", hostidx + "");
-                final ProgressDialog dialog = new ProgressDialog(context);
-                dialog.setMessage("리뷰를 등록 중 입니다.");
+        if(item==null) {
+            findViewById(R.id.edit).setVisibility(View.GONE);
 
-                dialog.show();
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/review", params, true, "POST");
-                        context.runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                dialog.dismiss();
-                                JSONParser parser = new JSONParser();
-                                try {
-                                    JSONObject object = (JSONObject) parser.parse(html);
-                                    Long status = (Long) object.get("status");
-                                    if (status == 200) {
-                                        Toast.makeText(context, "리뷰 작성에 성공하였습니다.", Toast.LENGTH_LONG).show();
-                                        dismiss();
-                                    } else {
-                                        Toast.makeText(context, "리뷰 작성에 실패하였습니다.", Toast.LENGTH_LONG).show();
-                                        dismiss();
-                                    }
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(context, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
-                                }
-                            }
-
-                        });
-
+            ((TextView) findViewById(R.id.host_name)).setText(hostname);
+            ((TextView) findViewById(R.id.host_addr)).setText(hostAddress);
+            ((TextView) findViewById(R.id.host_num)).setText(hostTel);
+            ((EditText)findViewById(R.id.review)).setText(review);
+            findViewById(R.id.review_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String review = ((EditText) findViewById(R.id.review)).getText().toString();
+                    if (review.equals("")) {
+                        Toast.makeText(context, "내용을 입력하세요", Toast.LENGTH_LONG).show();
+                        return;
                     }
-                }).start();
-            }
-        });
+                    final HashMap<String, String> params = new HashMap<>();
+                    params.put("review", review);
+                    params.put("reviewScore", reviewScore + "");
+                    params.put("hostIdx", hostidx + "");
+                    final ProgressDialog dialog = new ProgressDialog(context);
+                    dialog.setMessage("리뷰를 등록 중 입니다.");
 
-        findViewById(R.id.cancel_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+                    dialog.show();
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/review", params, true, "POST");
+                            context.runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                    JSONParser parser = new JSONParser();
+                                    try {
+                                        JSONObject object = (JSONObject) parser.parse(html);
+                                        Long status = (Long) object.get("status");
+                                        if (status == 200) {
+                                            Toast.makeText(context, "리뷰 작성에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                            dismiss();
+                                        } else {
+                                            Toast.makeText(context, "리뷰 작성에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                            dismiss();
+                                        }
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(context, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                            });
+
+                        }
+                    }).start();
+                }
+            });
+
+            findViewById(R.id.cancel_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
+        }else{
+
+            findViewById(R.id.register).setVisibility(View.GONE);
+
+        //    ((TextView) findViewById(R.id.host_name)).setText(item.get);
+           // ((TextView) findViewById(R.id.host_addr)).setText();
+            ((TextView) findViewById(R.id.host_num)).setText(hostTel);
+            ((EditText)findViewById(R.id.review)).setText(item.getReview());
+            findViewById(R.id.edit_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String review = ((EditText) findViewById(R.id.review)).getText().toString();
+                    if (review.equals("")) {
+                        Toast.makeText(context, "내용을 입력하세요", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    final HashMap<String, String> params = new HashMap<>();
+                    params.put("review", review);
+                    params.put("reviewScore", reviewScore + "");
+                    params.put("hostIdx", hostidx + "");
+                    final ProgressDialog dialog = new ProgressDialog(context);
+                    dialog.setMessage("리뷰를 등록 중 입니다.");
+
+                    dialog.show();
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/review", params, true, "POST");
+                            context.runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                    JSONParser parser = new JSONParser();
+                                    try {
+                                        JSONObject object = (JSONObject) parser.parse(html);
+                                        Long status = (Long) object.get("status");
+                                        if (status == 200) {
+                                            Toast.makeText(context, "리뷰 작성에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                            dismiss();
+                                        } else {
+                                            Toast.makeText(context, "리뷰 작성에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                            dismiss();
+                                        }
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(context, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                            });
+
+                        }
+                    }).start();
+                }
+            });
+
+            findViewById(R.id.delete_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
+        }
     }
 
 }

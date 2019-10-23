@@ -34,8 +34,8 @@ public class MessagingService extends FirebaseMessagingService {
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Be-light")
                     .setContentTitle(data.get("title"))
-                    .setContentText(data.get("contents"))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentText(data.get("body"))
+                    .setPriority(NotificationCompat.PRIORITY_MAX)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true);
 

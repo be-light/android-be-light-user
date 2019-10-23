@@ -51,7 +51,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="49" />
+                                                <entry key="scalingPercent" value="66" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -62,8 +62,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="foregroundImage" value="C:\Users\Admin\Downloads\KakaoTalk_20191022_101031260.png" />
+                                      <entry key="backgroundColor" value="0978b8" />
+                                      <entry key="foregroundImage" value="C:\Users\Admin\Downloads\KakaoTalk_20191023_224003282.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

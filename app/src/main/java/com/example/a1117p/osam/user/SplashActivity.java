@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -29,13 +28,14 @@ import java.util.regex.Pattern;
 import static java.lang.Thread.sleep;
 
 public class SplashActivity extends AppCompatActivity {
-    SharedPreferences preferences;
     final String pwPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{9,}$";
+    String[] Permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        preferences = getSharedPreferences("OsamUser", MODE_PRIVATE);
+        MySharedPreferences.init(this);
         findViewById(R.id.register_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
                         } else if (passwd.equals("")) {
                             Toast.makeText(SplashActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
                             return;
-                        }else if (!Pattern.compile(pwPattern).matcher(passwd).matches()) {
+                        } else if (!Pattern.compile(pwPattern).matcher(passwd).matches()) {
                             new AlertDialog.Builder(SplashActivity.this).setMessage("비밀번호는 영문자,숫자,특수문자를 1개 이상씩 포함하여 9자리 이상이여야 합니다.")
                                     .setNeutralButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
@@ -96,12 +96,7 @@ public class SplashActivity extends AppCompatActivity {
                                             JSONObject object = (JSONObject) parser.parse(html);
                                             Long status = (Long) object.get("status");
                                             if (status == 200) {
-                                                SharedPreferences.Editor editor = preferences.edit();
-                                                editor.putString("id", id);
-                                                editor.putString("passwd", passwd);
-
-                                                //최종 커밋
-                                                editor.apply();
+                                                MySharedPreferences.setIdPw(id, passwd);
 
 
                                                 Intent i = new Intent(SplashActivity.this, MapActivity.class);
@@ -123,18 +118,26 @@ public class SplashActivity extends AppCompatActivity {
                 });
             }
         });
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+        if (checkPermission()) {
+            ActivityCompat.requestPermissions(this, Permissions, 0);
 
         } else {
             StartThread(getIntent().getBooleanExtra("needLoading", true));
         }
     }
 
+    boolean checkPermission() {
+        for (String perm : Permissions) {
+            if (ContextCompat.checkSelfPermission(this, perm) != PackageManager.PERMISSION_GRANTED) {
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.length < Permissions.length || checkPermission()) {
             Toast.makeText(this, "권한없음!!!!", Toast.LENGTH_LONG).show();
             finish();
         } else {
@@ -148,8 +151,8 @@ public class SplashActivity extends AppCompatActivity {
         //startActivity(i);
         //finish();
         if (b) {
-            String id = preferences.getString("id", null);
-            String passwd = preferences.getString("passwd", null);
+            String id = MySharedPreferences.getId();
+            String passwd = MySharedPreferences.getPw();
             if (id == null || passwd == null) {
                 new Thread(new Runnable() {
                     @Override
@@ -208,12 +211,7 @@ public class SplashActivity extends AppCompatActivity {
                                         finish();
                                     } else {
                                         Toast.makeText(SplashActivity.this, "자동로그인에 실패하였습니다.", Toast.LENGTH_LONG).show();
-                                        SharedPreferences.Editor editor = preferences.edit();
-                                        editor.remove("id");
-                                        editor.remove("passwd");
-
-                                        //최종 커밋
-                                        editor.apply();
+                                        MySharedPreferences.removeIdPw();
                                         StartThread(false);
                                     }
                                 } catch (ParseException e) {

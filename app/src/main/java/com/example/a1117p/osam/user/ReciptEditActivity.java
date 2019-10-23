@@ -121,7 +121,26 @@ public class ReciptEditActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         date2 = new Date();
-        if (date1.compareTo(date2) >= 0) {
+        TextView title = findViewById(R.id.title);
+        switch ((int) item.getStatusCode()){
+
+            case -1:
+                title.setText("취소된예약");
+                break;
+            case 0:
+                title.setText("신청한예약");
+                break;
+            case 1:
+            case 2:
+                title.setText("진행중");
+                break;
+            case 3:
+                title.setText("주문내역");
+                break;
+
+
+        }
+        if (date1.compareTo(date2) >= 0 && item.getStatusCode() == 0) {
             findViewById(R.id.edit_btn).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -215,7 +234,7 @@ public class ReciptEditActivity extends AppCompatActivity {
             });
             findViewById(R.id.review_btn1).setVisibility(View.GONE);
             findViewById(R.id.review_btn2).setVisibility(View.GONE);
-        } else {
+        } else if (item.getStatusCode() == 3) {
             findViewById(R.id.edit_btns).setVisibility(View.GONE);
             findViewById(R.id.review_btn1).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -231,6 +250,11 @@ public class ReciptEditActivity extends AppCompatActivity {
                     dialog.show();
                 }
             });
+        } else {
+            findViewById(R.id.edit_btns).setVisibility(View.GONE);
+
+            findViewById(R.id.review_btn1).setVisibility(View.GONE);
+            findViewById(R.id.review_btn2).setVisibility(View.GONE);
         }
         refreshPrice();
     }

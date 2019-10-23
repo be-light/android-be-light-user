@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -94,6 +97,8 @@ public class ResvtnRegisterDialog extends Dialog {
             stars+="★";
         if(drop_data.score-star>0.5)
             stars+="☆";
+        OvalView(findViewById(R.id.pick_Img));
+        OvalView(findViewById(R.id.drop_Img));
         ((TextView) findViewById(R.id.drop_score_star)).setText(stars);
         ((TextView) findViewById(R.id.drop_score)).setText(String.format("%.1f",drop_data.score));
 
@@ -257,16 +262,14 @@ public class ResvtnRegisterDialog extends Dialog {
             }
         });
 
-        findViewById(R.id.info_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "뭐하는 버튼이지;;", Toast.LENGTH_LONG).show();
-                dismiss();
-            }
-        });
         refreshPrice();
     }
-
+    void OvalView(View v) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            v.setBackground(new ShapeDrawable(new OvalShape()));
+            v.setClipToOutline(true);
+        }
+    }
     void refreshPrice() {
         ((TextView) findViewById(R.id.count)).setText(checkInCount + "");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

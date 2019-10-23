@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:background="@null"
-                android:hint="검색할 내용을 입력하세요"
+                android:hint="짐을 맡길 장소"
                 android:inputType="text"
                 android:textAlignment="center" />
 

@@ -2,9 +2,9 @@ package com.example.a1117p.osam.user;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -25,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -47,6 +46,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -56,31 +56,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     MapInfoWindowFragment mMapFragment;
     GoogleMap mGoogleMap;
     Boolean issearch = false;
-    Marker selectedMarker = null;
     BitmapDescriptor bitmapDescriptor;
     long backKeyClickTime = 0;
     HashMap<Marker, InfoWindow> hashmap;
     InfoWindowManager manager;
-    LatLngBounds.Builder builder;
     int checkInCount = 1;
+    ImageView profile;
 
     void OvalProfile() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ImageView imageView = findViewById(R.id.profile_img);
-            imageView.setBackground(new ShapeDrawable(new OvalShape()));
-            imageView.setClipToOutline(true);
+            profile.setBackground(new ShapeDrawable(new OvalShape()));
+            profile.setClipToOutline(true);
         }
     }
 
     void downReview() {
         findViewById(R.id.review).setClickable(false);
         //findViewById(R.id.down).setClickable(false);
-       // findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim));
+        // findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim));
     }
 
     void downReview_fast() {
 //        findViewById(R.id.review).setClickable(false);
-       // findViewById(R.id.down).setClickable(false);
+        // findViewById(R.id.down).setClickable(false);
         //findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim_fast));
     }
 
@@ -100,6 +98,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //downReview_fast();
         manager = mMapFragment.infoWindowManager();
 
+
+        profile = findViewById(R.id.profile_img);
+        if (MySharedPreferences.getProfileImgPath() != null) {
+            File imgFile = new File(MySharedPreferences.getProfileImgPath());
+
+            if (imgFile.exists()) {
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                profile.setImageBitmap(myBitmap);
+            }
+        }
         OvalProfile();
         ((TextView) findViewById(R.id.name)).setText(RequestHttpURLConnection.name);
         ((TextView) findViewById(R.id.email)).setText(RequestHttpURLConnection.email);
@@ -131,7 +139,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 String search = ((EditText) findViewById(R.id.search_edit)).getText().toString();
                 Geocoder geocoder = new Geocoder(MapActivity.this);
                 try {
-                    List<Address> addressList = geocoder.getFromLocationName(search, 20);
+                    List<Address> addressList = geocoder.getFromLocationName(search, 1);
 
                     dialog.dismiss();
                     if (addressList.size() == 0) {
@@ -140,123 +148,91 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         onMapReady(mGoogleMap);
                         return;
                     }
-                    builder = LatLngBounds.builder();
-                    for (Address address : addressList) {
-                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                        mGoogleMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .icon(bitmapDescriptor)
-                                .title(address.getFeatureName()));
-                        builder = builder.include(latLng);
-                    }
-                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
-                    mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                        @Override
-                        public boolean onMarkerClick(Marker marker) {
-                            if (selectedMarker != null && selectedMarker.equals(marker)) {
-                                AlertDialog dialog = new AlertDialog.Builder(MapActivity.this)
-                                        .setTitle("검색지점선택")
-                                        .setMessage("(" + marker.getTitle() + ") 이 곳을 기점으로 검색하시겠습니까?")
-                                        .setPositiveButton("예", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                issearch = false;
-                                                final LatLng position = selectedMarker.getPosition();
-                                                final ProgressDialog Pdialog = new ProgressDialog(MapActivity.this);
-                                                Pdialog.setMessage("검색중입니다.");
+                    final Address address = addressList.get(0);
+                    issearch = false;
+                    final ProgressDialog Pdialog = new ProgressDialog(MapActivity.this);
+                    Pdialog.setMessage("검색중입니다.");
 
-                                                Pdialog.show();
-                                                new Thread(new Runnable() {
+                    Pdialog.show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/map/hosts?latitude=" + address.getLatitude() + "&longitude=" + address.getLongitude(), null, "GET");
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    Pdialog.dismiss();
+                                    mGoogleMap.clear();
+                                    mGoogleMap.setOnMarkerClickListener(null);
+                                    //Toast.makeText(MapActivity.this, html, Toast.LENGTH_LONG).show();
+
+                                    try {
+                                        JSONParser jsonParser = new JSONParser();
+                                        JSONArray jsonArr = (JSONArray) jsonParser.parse(html);
+                                        if(0==jsonArr.size()){
+                                            Toast.makeText(MapActivity.this, "검색결과없음", Toast.LENGTH_LONG).show();
+                                            return;
+                                        }
+                                        hashmap = new HashMap<>();
+                                        for (Object o : jsonArr) {
+                                            JSONObject object = (JSONObject) o;
+                                            LatLng latLng = new LatLng(Double.parseDouble((String) object.get("hostLatitude")), Double.parseDouble((String) object.get("hostLongitude")));
+                                            InfoWindowData data = new InfoWindowData(object);
+                                            final Marker marker = mGoogleMap.addMarker(new MarkerOptions()
+                                                    .position(latLng)
+                                                    .icon(bitmapDescriptor)
+                                                    .title((String) object.get("hostName")));
+                                            InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
+                                            final InfoWindow infoWindow = new InfoWindow(marker, markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
+                                            // Shows the InfoWindow or hides it if it is already opened.
+                                            manager.toggle(infoWindow, true);
+                                            hashmap.put(marker, infoWindow);
+
+
+                                        }
+                                       new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/map/hosts?latitude=" + position.latitude + "&longitude=" + position.longitude, null, "GET");
-                                                        runOnUiThread(new Runnable() {
+                                                        LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
 
+                                                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,  12.8f));
+                                                        mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                                             @Override
-                                                            public void run() {
-                                                                Pdialog.dismiss();
-                                                                mGoogleMap.clear();
-                                                                mGoogleMap.setOnMarkerClickListener(null);
-                                                                //Toast.makeText(MapActivity.this, html, Toast.LENGTH_LONG).show();
-
-                                                                try {
-                                                                    JSONParser jsonParser = new JSONParser();
-                                                                    JSONArray jsonArr = (JSONArray) jsonParser.parse(html);
-                                                                    builder = LatLngBounds.builder();
-                                                                    hashmap = new HashMap<>();
-                                                                    for (Object o : jsonArr) {
-                                                                        JSONObject object = (JSONObject) o;
-                                                                        LatLng latLng = new LatLng(Double.parseDouble((String) object.get("hostLatitude")), Double.parseDouble((String) object.get("hostLongitude")));
-                                                                        InfoWindowData data = new InfoWindowData(object);
-                                                                        final Marker marker = mGoogleMap.addMarker(new MarkerOptions()
-                                                                                .position(latLng)
-                                                                                .icon(bitmapDescriptor)
-                                                                                .title((String) object.get("hostName")));
-                                                                        builder = builder.include(latLng);
-                                                                        InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
-                                                                        final InfoWindow infoWindow = new InfoWindow(marker, markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
-                                                                        // Shows the InfoWindow or hides it if it is already opened.
-                                                                        manager.toggle(infoWindow, true);
-                                                                        hashmap.put(marker, infoWindow);
-
-
-                                                                    }
-                                                                    new Thread(new Runnable() {
-                                                                        @Override
-                                                                        public void run() {
-                                                                            runOnUiThread(new Runnable() {
-                                                                                @Override
-                                                                                public void run() {
-
-                                                                                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
-                                                                                    mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                                                                                        @Override
-                                                                                        public boolean onMarkerClick(Marker marker) {
-                                                                                            InfoWindow window = hashmap.get(marker);
-                                                                                            if (window != null) {
-                                                                                                manager.toggle(window, true);
-                                                                                            }
-                                                                                            return true;
-                                                                                        }
-                                                                                    });
-                                                                                }
-                                                                            });
-                                                                        }
-                                                                    }).start();
-                                                                } catch (final Exception e) {
-                                                                    runOnUiThread(new Runnable() {
-
-                                                                        @Override
-                                                                        public void run() {
-                                                                            Toast.makeText(MapActivity.this, "검색결과가 없습니다.", Toast.LENGTH_LONG).show();
-
-                                                                        }
-
-                                                                    });
+                                                            public boolean onMarkerClick(Marker marker) {
+                                                                InfoWindow window = hashmap.get(marker);
+                                                                if (window != null) {
+                                                                    manager.toggle(window, true);
                                                                 }
-
+                                                                return true;
                                                             }
-
                                                         });
-
                                                     }
-                                                }).start();
+                                                });
                                             }
-                                        })
-                                        .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                                        }).start();
+                                    } catch (final Exception e) {
+                                        runOnUiThread(new Runnable() {
+
                                             @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Toast.makeText(MapActivity.this, "다른 곳을 선택하세요", Toast.LENGTH_LONG).show();
+                                            public void run() {
+                                                Toast.makeText(MapActivity.this, "검색결과가 없습니다.", Toast.LENGTH_LONG).show();
+
                                             }
-                                        }).create();
-                                dialog.show();
-                                return true;
-                            } else {
-                                selectedMarker = marker;
-                            }
-                            return false;
+
+                                        });
+                                    }
+
+                                }
+
+                            });
+
                         }
-                    });
+                    }).start();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -350,16 +326,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
-         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
         Criteria criteria = new Criteria();
 
         // Getting the name of the best provider
-         String provider = locationManager.getBestProvider(criteria, false);
+        String provider = locationManager.getBestProvider(criteria, false);
 
         // Getting Current Location
-         @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
 
         if (location != null) {
             // Getting latitude of the current location
@@ -386,7 +362,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             markerOptions.title("내위치");
 
             googleMap.addMarker(markerOptions);
-            
+
             mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
 
         }

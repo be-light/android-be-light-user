@@ -4,10 +4,16 @@ package com.example.a1117p.osam.user;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,17 +26,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class ProfileActivity extends AppCompatActivity {
-
+    File file = null;
+    ImageView profile;
 
     void OvalProfile() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ImageView imageView = findViewById(R.id.profile_img);
-            imageView.setBackground(new ShapeDrawable(new OvalShape()));
-            imageView.setClipToOutline(true);
+            profile.setBackground(new ShapeDrawable(new OvalShape()));
+            profile.setClipToOutline(true);
         }
     }
 
@@ -44,7 +52,6 @@ public class ProfileActivity extends AppCompatActivity {
         dialog.setMessage("프로필을 불러오는 중 입니다.");
 
         dialog.show();
-        OvalProfile();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -79,6 +86,24 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         }).start();
+        profile = findViewById(R.id.profile_img);
+        if(MySharedPreferences.getProfileImgPath()!=null){
+            File imgFile = new  File(MySharedPreferences.getProfileImgPath());
+
+            if(imgFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                profile.setImageBitmap(myBitmap);
+            }
+        }
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, 0);
+            }
+        });
         findViewById(R.id.edit_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +131,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(ProfileActivity.this, "주소를 입력하세요", Toast.LENGTH_LONG).show();
                     return;
                 }
-                final HashMap params = new HashMap<String, String>();
+                final HashMap<String, String> params = new HashMap<>();
 
                 params.put("userEmail", email);
                 params.put("userPhoneNumber", phone);
@@ -139,7 +164,7 @@ public class ProfileActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/user?_method=PUT", params, true, "POST");
+                        final String html = RequestHttpURLConnection.requestWith_File("https://be-light.store/api/user?_method=PUT", params, true, "POST", file);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -166,7 +191,26 @@ public class ProfileActivity extends AppCompatActivity {
                 }).start();
             }
         });
+        OvalProfile();
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                Uri uri = data.getData();
+                String path = null;
+                try {
+                    path = PathUtil.getPath(this,uri);
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                file = new File(path);
+                MySharedPreferences.setProfileImgPath(path);
+                profile.setImageURI(uri);
+                OvalProfile();
+            }
+        }
+    }
 }

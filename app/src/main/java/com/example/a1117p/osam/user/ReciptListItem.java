@@ -18,7 +18,8 @@ public class ReciptListItem implements Parcelable {
         }
     };
     private String hostaddress, hostPostalCode, hostName, ghostaddress, ghostPostalCode, ghostName, reciptNumber, checkin, checkOut, paid, hostUserPhoneNumber, gHostUserPhoneNumber;
-    private long itemCount,hostIdx,ghostidx,statusCode;
+    private long itemCount, hostIdx, ghostidx, statusCode;
+
     ReciptListItem(JSONObject object) {
         hostaddress = (String) object.get("hostaddress");
         hostPostalCode = (String) object.get("hostPostalCode");
@@ -32,10 +33,10 @@ public class ReciptListItem implements Parcelable {
         paid = String.valueOf(object.get("paid"));
         hostUserPhoneNumber = (String) object.get("hostUserPhoneNumber");
         gHostUserPhoneNumber = (String) object.get("gHostUserPhoneNumber");
-        itemCount = (Long)object.get("itemCount");
-        hostIdx = (Long)object.get("hostIdx");
-        ghostidx = (Long)object.get("gHostIdx");
-        statusCode=(Long)object.get("statusCode");
+        itemCount = (Long) object.get("itemCount");
+        hostIdx = (Long) object.get("hostIdx");
+        ghostidx = (Long) object.get("gHostIdx");
+        statusCode = (Long) object.get("statusCode");
     }
 
 
@@ -55,6 +56,7 @@ public class ReciptListItem implements Parcelable {
         itemCount = in.readLong();
         hostIdx = in.readLong();
         ghostidx = in.readLong();
+        statusCode = in.readLong();
     }
 
     @Override
@@ -114,6 +116,7 @@ public class ReciptListItem implements Parcelable {
     public long getItemCount() {
         return itemCount;
     }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(hostaddress);
@@ -131,6 +134,7 @@ public class ReciptListItem implements Parcelable {
         dest.writeLong(itemCount);
         dest.writeLong(hostIdx);
         dest.writeLong(ghostidx);
+        dest.writeLong(statusCode);
     }
 
     public long getHostIdx() {
@@ -139,5 +143,9 @@ public class ReciptListItem implements Parcelable {
 
     public long getGhostidx() {
         return ghostidx;
+    }
+
+    public long getStatusCode() {
+        return statusCode;
     }
 }

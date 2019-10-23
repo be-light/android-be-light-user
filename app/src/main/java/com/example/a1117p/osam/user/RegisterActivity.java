@@ -9,7 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -30,13 +36,13 @@ public class RegisterActivity extends AppCompatActivity {
         findViewById(R.id.register_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = ((EditText) findViewById(R.id.name)).getText().toString();
-                String id = ((EditText) findViewById(R.id.id)).getText().toString();
-                String passwd = ((EditText) findViewById(R.id.passwd)).getText().toString();
+                final String name = ((EditText) findViewById(R.id.name)).getText().toString();
+                final String id = ((EditText) findViewById(R.id.id)).getText().toString();
+                final String passwd = ((EditText) findViewById(R.id.passwd)).getText().toString();
                 String passwd_confirm = ((EditText) findViewById(R.id.passwd_confirm)).getText().toString();
-                String email = ((EditText) findViewById(R.id.email)).getText().toString();
-                String phone = ((EditText) findViewById(R.id.phone)).getText().toString();
-                String address = ((EditText) findViewById(R.id.address)).getText().toString();
+                final String email = ((EditText) findViewById(R.id.email)).getText().toString();
+                final String phone = ((EditText) findViewById(R.id.phone)).getText().toString();
+                final String address = ((EditText) findViewById(R.id.address)).getText().toString();
                 if (id.equals("")) {
                     Toast.makeText(RegisterActivity.this, "ID를 입력하세요", Toast.LENGTH_LONG).show();
                     return;
@@ -87,41 +93,59 @@ public class RegisterActivity extends AppCompatActivity {
                 dialog.setMessage("회원가입 중 입니다.");
 
                 dialog.show();
-                final HashMap params = new HashMap<String, String>();
+                final HashMap<String, String> params = new HashMap<>();
 
-                params.put("userId", id);
-                params.put("userName", name);
-                params.put("userPassword", passwd);
-                params.put("userEmail", email);
-                params.put("userPhoneNumber", phone);
-                params.put("userAddress", address);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/auth/register", params, "POST");
-                        runOnUiThread(new Runnable() {
+                FirebaseInstanceId.getInstance().getInstanceId()
+                        .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                             @Override
-                            public void run() {
-                                dialog.dismiss();
-                                JSONParser parser = new JSONParser();
-                                try {
-                                    JSONObject object = (JSONObject) parser.parse(html);
-                                    Long status = (Long) object.get("status");
-                                    if (status == 200) {
-                                        Toast.makeText(RegisterActivity.this, "회원가입에 성공하였습니다.", Toast.LENGTH_LONG).show();
-                                        finish();
-                                    } else {
-                                        Toast.makeText(RegisterActivity.this, "회원가입에 실패하였습니다.", Toast.LENGTH_LONG).show();
-                                    }
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
+                            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                if (!task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+
+                                    return;
                                 }
-                            }
+
+                                String token = task.getResult().getToken();
+
+                                params.put("userId", id);
+                                params.put("userName", name);
+                                params.put("userPassword", passwd);
+                                params.put("userEmail", email);
+                                params.put("userPhoneNumber", phone);
+                                params.put("userAddress", address);
+                                params.put("userDeviceToken", token);
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        final String html = RequestHttpURLConnection.request("https://be-light.store/api/auth/register", params, "POST");
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                dialog.dismiss();
+                                                JSONParser parser = new JSONParser();
+                                                try {
+                                                    JSONObject object = (JSONObject) parser.parse(html);
+                                                    Long status = (Long) object.get("status");
+                                                    if (status == 200) {
+                                                        Toast.makeText(RegisterActivity.this, "회원가입에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(RegisterActivity.this, "회원가입에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                                    }
+                                                } catch (ParseException e) {
+                                                    e.printStackTrace();
+                                                    Toast.makeText(RegisterActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
+
+                                    }
+                                }).start();
+                             }
                         });
 
-                    }
-                }).start();
+
+
             }
         });
     }

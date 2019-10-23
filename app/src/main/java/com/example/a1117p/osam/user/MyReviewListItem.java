@@ -1,12 +1,15 @@
 package com.example.a1117p.osam.user;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.simple.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MyReviewListItem {
+public class MyReviewListItem  implements Parcelable {
     private String userId,review,reviewDate;
     private long reviewScore;
     MyReviewListItem(JSONObject object){
@@ -21,6 +24,25 @@ public class MyReviewListItem {
         }
         reviewScore = (long)object.get("reviewScore");
     }
+
+    protected MyReviewListItem(Parcel in) {
+        userId = in.readString();
+        review = in.readString();
+        reviewDate = in.readString();
+        reviewScore = in.readLong();
+    }
+
+    public static final Creator<MyReviewListItem> CREATOR = new Creator<MyReviewListItem>() {
+        @Override
+        public MyReviewListItem createFromParcel(Parcel in) {
+            return new MyReviewListItem(in);
+        }
+
+        @Override
+        public MyReviewListItem[] newArray(int size) {
+            return new MyReviewListItem[size];
+        }
+    };
 
     public String getUserId() {
         return userId;
@@ -41,4 +63,16 @@ public class MyReviewListItem {
         return reviewScore;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(userId);
+        parcel.writeString(review);
+        parcel.writeString(reviewDate);
+        parcel.writeLong(reviewScore);
+    }
 }

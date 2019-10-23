@@ -88,7 +88,7 @@
                     android:background="@color/w"
                     android:gravity="center"
                     android:text="★"
-                    android:textColor="#ffff00"
+                    android:textColor="@color/star"
                     android:textSize="20sp" />
 
                 <Button
@@ -99,7 +99,7 @@
                     android:background="@color/w"
                     android:gravity="center"
                     android:text="★"
-                    android:textColor="#ffff00"
+                    android:textColor="@color/star"
                     android:textSize="20sp" />
 
                 <Button
@@ -110,7 +110,7 @@
                     android:background="@color/w"
                     android:gravity="center"
                     android:text="★"
-                    android:textColor="#ffff00"
+                    android:textColor="@color/star"
                     android:textSize="20sp" />
 
                 <Button
@@ -121,7 +121,7 @@
                     android:background="@color/w"
                     android:gravity="center"
                     android:text="★"
-                    android:textColor="#ffff00"
+                    android:textColor="@color/star"
                     android:textSize="20sp" />
 
                 <Button
@@ -132,7 +132,7 @@
                     android:background="@color/w"
                     android:gravity="center"
                     android:text="★"
-                    android:textColor="#ffff00"
+                    android:textColor="@color/star"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -148,6 +148,7 @@
 
 
         <LinearLayout
+            android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -158,10 +159,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:textSize="20sp"
                 android:background="@drawable/stadiumbutton_slim"
                 android:minHeight="0dp"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
                 android:text="취소"
                 android:textColor="@color/w" />
 
@@ -171,11 +171,40 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:textSize="20sp"
                 android:background="@drawable/stadiumbutton_slim"
                 android:minHeight="0dp"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
                 android:text="등록"
+                android:textColor="@color/w" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:background="@drawable/stadiumbutton_slim"
+                android:minHeight="0dp"
+                android:text="삭제"
+                android:textColor="@color/w" />
+
+            <Button
+                android:id="@+id/edit_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:background="@drawable/stadiumbutton_slim"
+                android:minHeight="0dp"
+                android:text="수정"
                 android:textColor="@color/w" />
         </LinearLayout>
     </LinearLayout>

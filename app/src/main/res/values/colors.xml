@@ -8,4 +8,5 @@
     <color name="w">#ffffff</color>
     <color name="b">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="star">#FF5900</color>
 </resources>

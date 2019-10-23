@@ -19,7 +19,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이전예약"
+            android:text="주문내역"
+            android:id="@+id/title"
             android:textAlignment="center"
             android:textColor="@color/w"
             android:textSize="30sp" />
@@ -93,6 +94,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/stadiumbutton_slim"
                     android:minHeight="0dp"
+                    android:textSize="20sp"
                     android:text="리뷰"
                     android:textColor="@color/w" />
 
@@ -151,6 +153,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/stadiumbutton_slim"
                     android:minHeight="0dp"
+                    android:textSize="20sp"
                     android:text="리뷰"
                     android:textColor="@color/w" />
 
@@ -431,6 +434,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/stadiumbutton_slim"
                         android:minHeight="0dp"
+                        android:textSize="20sp"
                         android:text="수정"
                         android:textColor="@color/w" />
 
@@ -443,6 +447,7 @@
                         android:background="@drawable/stadiumbutton_slim"
                         android:minHeight="0dp"
                         android:text="삭제"
+                        android:textSize="20sp"
                         android:textColor="@color/w" />
 
                 </LinearLayout>

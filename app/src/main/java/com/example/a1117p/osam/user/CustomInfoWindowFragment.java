@@ -27,8 +27,8 @@ public class CustomInfoWindowFragment extends Fragment {
     InfoWindowData data;
     AppCompatActivity context;
     ListView listView;
+    boolean isReview = true;
     private View mWindow;
-    boolean isReview=true;
 
     CustomInfoWindowFragment(InfoWindowData data, AppCompatActivity context) {
         this.data = data;
@@ -52,6 +52,7 @@ public class CustomInfoWindowFragment extends Fragment {
             public void onClick(View v) {
                 Dialog dialog = new ResvtnClickDialog(context, data, Integer.parseInt(((TextView) context.findViewById(R.id.count)).getText().toString()));
 
+
                 dialog.show();
 
             }
@@ -60,7 +61,7 @@ public class CustomInfoWindowFragment extends Fragment {
         mWindow.findViewById(R.id.review_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                if(isReview) {
+                if (isReview) {
 
                     final ProgressDialog Pdialog = new ProgressDialog(context);
                     Pdialog.setMessage("리뷰를 불러오는중입니다.");
@@ -77,9 +78,9 @@ public class CustomInfoWindowFragment extends Fragment {
                                 JSONParser jsonParser = new JSONParser();
                                 JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
                                 final ReviewListAdapter adapter = new ReviewListAdapter(jsonArray);
-                                if(adapter.getCount()==0){
-                                    ((Button)v).setText("리뷰");
-                                    isReview=true;
+                                if (adapter.getCount() == 0) {
+                                    ((Button) v).setText("리뷰");
+                                    isReview = true;
                                 }
                                 context.runOnUiThread(new Runnable() {
 
@@ -88,7 +89,7 @@ public class CustomInfoWindowFragment extends Fragment {
 
                                         Pdialog.dismiss();
                                         listView.setAdapter(adapter);
-                                        ((Button)v).setText("닫기");
+                                        ((Button) v).setText("닫기");
                                     }
 
                                 });
@@ -106,12 +107,12 @@ public class CustomInfoWindowFragment extends Fragment {
 
                         }
                     }).start();
-                    isReview=false;
-                }else{
+                    isReview = false;
+                } else {
 
                     listView.setAdapter(null);
-                    ((Button)v).setText("리뷰");
-                    isReview=true;
+                    ((Button) v).setText("리뷰");
+                    isReview = true;
                 }
             }
         });
@@ -123,8 +124,9 @@ public class CustomInfoWindowFragment extends Fragment {
 
                     @Override
                     public void run() {
-
-                        ((ViewGroup) view.getParent()).setBackgroundColor(Color.TRANSPARENT);
+                        ViewGroup viewGroup = ((ViewGroup) view.getParent());
+                        if (viewGroup != null)
+                            viewGroup.setBackgroundColor(Color.TRANSPARENT);
                     }
 
                 });
