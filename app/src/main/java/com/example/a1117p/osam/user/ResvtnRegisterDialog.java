@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,6 +98,16 @@ public class ResvtnRegisterDialog extends Dialog {
             stars+="★";
         if(drop_data.score-star>0.5)
             stars+="☆";
+        ImageView pick= findViewById(R.id.pick_Img),drop=findViewById(R.id.drop_Img);
+
+        if(pick_data.hostImage!=null&&!pick_data.hostImage.equals("")){
+            new DownloadImageTask(pick,true)
+                    .execute(pick_data.hostImage);
+        }
+        if(drop_data.hostImage!=null&&!drop_data.hostImage.equals("")){
+            new DownloadImageTask(drop,true)
+                    .execute(drop_data.hostImage);
+        }
         OvalView(findViewById(R.id.pick_Img));
         OvalView(findViewById(R.id.drop_Img));
         ((TextView) findViewById(R.id.drop_score_star)).setText(stars);

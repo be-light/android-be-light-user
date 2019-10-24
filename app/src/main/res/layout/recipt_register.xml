@@ -13,9 +13,9 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/cat" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/reservation2" />
 
         <TextView
             android:fontFamily="@font/lotte"
@@ -68,7 +68,8 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/drop_addr"
+                        android:id="@+id/drop_addr"  android:ellipsize="end"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -107,7 +108,7 @@
                         android:id="@+id/drop_Img"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/cat"
+                        android:src="@drawable/hostdefault"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/drop_score_star" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -138,7 +139,8 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/pick_addr"
+                        android:id="@+id/pick_addr"  android:ellipsize="end"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -178,7 +180,7 @@
                         android:id="@+id/pick_Img"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/cat"
+                        android:src="@drawable/hostdefault"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/pick_score" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -255,7 +257,8 @@
                             android:textColor="@color/b" />
 
                         <TextView
-                            android:id="@+id/drop_addr2"
+                            android:id="@+id/drop_addr2"  android:ellipsize="end"
+
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -287,7 +290,8 @@
                             android:textColor="@color/b" />
 
                         <TextView
-                            android:id="@+id/pick_addr2"
+                            android:id="@+id/pick_addr2"  android:ellipsize="end"
+
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"

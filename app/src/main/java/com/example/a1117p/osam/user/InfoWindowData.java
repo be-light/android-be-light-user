@@ -4,7 +4,7 @@ package com.example.a1117p.osam.user;
 import org.json.simple.JSONObject;
 
 class InfoWindowData {
-    String hostAddress, hostName, hostTel, hostPostalCode, hostIntro, term;
+    String hostAddress, hostName, hostTel, hostPostalCode, hostIntro, term,hostImage;
     long hostIdx;
     double dist, score;
 
@@ -22,5 +22,9 @@ class InfoWindowData {
             this.dist = (Long) object.get("distance");
         }
         this.score = Double.parseDouble((String) object.get("reviewScoreAvg"));
+
+        hostImage = (String) object.get("hostImage");
+        if(hostImage!=null&&!hostImage.equals(""))
+            hostImage="https://be-light.store"+hostImage;
     }
 }

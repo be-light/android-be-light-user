@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -47,7 +46,7 @@ public class ResvtnClickDialog extends Dialog {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         getWindow().setAttributes(layoutParams);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-       setContentView(R.layout.resvtn_click_dialog);
+        setContentView(R.layout.resvtn_click_dialog);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         if (checkInCount != 0) {
             ((TextView) findViewById(R.id.checkInCount)).setText(checkInCount + "");
@@ -101,9 +100,11 @@ public class ResvtnClickDialog extends Dialog {
         });
         if (drop_data != null) {
             ((TextView) findViewById(R.id.drop_name)).setText(drop_data.hostName);
+            ((TextView) findViewById(R.id.drop_addr)).setText(drop_data.hostAddress);
         }
         if (pick_data != null) {
             ((TextView) findViewById(R.id.pick_name)).setText(pick_data.hostName);
+            ((TextView) findViewById(R.id.pick_addr)).setText(pick_data.hostAddress);
         }
         if (pick_data == null || drop_data == null) {
             resvtn.setText("확인");
@@ -120,9 +121,10 @@ public class ResvtnClickDialog extends Dialog {
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
                                     drop_data = data;
-                                    ((TextView) findViewById(R.id.drop_addr)).setText(drop_data.hostAddress);
 
-                                        resvtn.setText("예약");
+                                    ((TextView) findViewById(R.id.drop_name)).setText(drop_data.hostName);
+                                    ((TextView) findViewById(R.id.drop_addr)).setText(drop_data.hostAddress);
+                                    resvtn.setText("예약");
 
                                 }
                             }).setNegativeButton("아니요", new OnClickListener() {
@@ -143,7 +145,9 @@ public class ResvtnClickDialog extends Dialog {
                 } else {
                     drop_data = data;
                     //((TextView) findViewById(R.id.drop_what)).setText("여기가 뭐하는 부분인지 모름");
+
                     ((TextView) findViewById(R.id.drop_name)).setText(drop_data.hostName);
+                    ((TextView) findViewById(R.id.drop_addr)).setText(drop_data.hostAddress);
                     if (pick_data != null) {
                         resvtn.setText("예약");
                     }
@@ -162,9 +166,10 @@ public class ResvtnClickDialog extends Dialog {
                                 public void onClick(DialogInterface dialogInterface, int i) {
 
                                     pick_data = data;
-                                    ((TextView) findViewById(R.id.pick_addr)).setText(pick_data.hostAddress);
 
-                                        resvtn.setText("예약");
+                                    ((TextView) findViewById(R.id.pick_name)).setText(pick_data.hostName);
+                                    ((TextView) findViewById(R.id.pick_addr)).setText(pick_data.hostAddress);
+                                    resvtn.setText("예약");
 
                                 }
                             }).setNegativeButton("아니요", new OnClickListener() {
@@ -184,7 +189,9 @@ public class ResvtnClickDialog extends Dialog {
                     }).create().show();
                 } else {
                     pick_data = data;
+
                     ((TextView) findViewById(R.id.pick_name)).setText(pick_data.hostName);
+                    ((TextView) findViewById(R.id.pick_addr)).setText(pick_data.hostAddress);
                     if (drop_data != null) {
                         resvtn.setText("예약");
                     }

@@ -68,7 +68,7 @@ public class ReviewRegisterDialog extends Dialog {
                 @Override
                 public void onClick(View view) {
                     int j;
-                    reviewScore = finalI;
+                    reviewScore = finalI+1;
                     for (j = 0; j <= finalI; j++)
                         stars.get(j).setText("★");
                     for (j = finalI + 1; j < 5; j++)
@@ -162,16 +162,17 @@ public class ReviewRegisterDialog extends Dialog {
                     final HashMap<String, String> params = new HashMap<>();
                     params.put("review", review);
                     params.put("reviewScore", reviewScore + "");
-                    params.put("hostIdx", hostidx + "");
+                    params.put("hostIdx", item.getHostIdx()+"");
+                    params.put("reviewNumber", item.getReviewNumber()+"");
                     final ProgressDialog dialog = new ProgressDialog(context);
-                    dialog.setMessage("리뷰를 등록 중 입니다.");
+                    dialog.setMessage("리뷰를 수정 중 입니다.");
 
                     dialog.show();
 
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/review", params, true, "POST");
+                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/review?_method=PUT", params, true, "POST");
                             context.runOnUiThread(new Runnable() {
 
                                 @Override
@@ -182,10 +183,10 @@ public class ReviewRegisterDialog extends Dialog {
                                         JSONObject object = (JSONObject) parser.parse(html);
                                         Long status = (Long) object.get("status");
                                         if (status == 200) {
-                                            Toast.makeText(context, "리뷰 작성에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context, "리뷰 수정에 성공하였습니다.", Toast.LENGTH_LONG).show();
                                             dismiss();
                                         } else {
-                                            Toast.makeText(context, "리뷰 작성에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(context, "리뷰 수정에 실패하였습니다.", Toast.LENGTH_LONG).show();
                                             dismiss();
                                         }
                                     } catch (ParseException e) {
@@ -204,7 +205,44 @@ public class ReviewRegisterDialog extends Dialog {
             findViewById(R.id.delete_btn).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dismiss();
+                    final HashMap<String, String> params = new HashMap<>();
+                    params.put("hostIdx", item.getHostIdx()+"");
+                    params.put("reviewNumber", item.getReviewNumber()+"");
+                    final ProgressDialog dialog = new ProgressDialog(context);
+                    dialog.setMessage("리뷰를 삭제 중 입니다.");
+
+                    dialog.show();
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final String html = RequestHttpURLConnection.request("https://be-light.store/api/review?_method=DELETE", params, true, "POST");
+                            context.runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                    JSONParser parser = new JSONParser();
+                                    try {
+                                        JSONObject object = (JSONObject) parser.parse(html);
+                                        Long status = (Long) object.get("status");
+                                        if (status == 200) {
+                                            Toast.makeText(context, "리뷰 삭제에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                            dismiss();
+                                        } else {
+                                            Toast.makeText(context, "리뷰 삭제에 실패하였습니다.", Toast.LENGTH_LONG).show();
+                                            dismiss();
+                                        }
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(context, "에러가 발생하였습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                            });
+
+                        }
+                    }).start();
                 }
             });
         }

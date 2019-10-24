@@ -6,80 +6,43 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113a1d04-2d27-4ffb-a0f2-15ff729a47bd" name="Default Changelist" comment="android api prototype success">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CaptureActivityAnyOrientation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MySharedPreferences.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/PathUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/roundedview_gray.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/roundedview_nopadding.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_capture.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/DownloadImageTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/hostdefault.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/userDefault.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/ic_launcher-web.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/ic_launcher-web.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ListViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ListViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/InfoWindowData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/InfoWindowData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MapActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MessagingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MessagingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptEditActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptEditActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptListItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptMgtActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptMgtActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/RegisterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/RequestHttpURLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/RequestHttpURLConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnClickDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnClickDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnRegisterDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnRegisterDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/SplashActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_faq.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_faq.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_mgt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_mgt.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_review_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_review_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_info_window.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_info_window.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hostitem.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hostitem.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/myreviewitem.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/myreviewitem.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recipt.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recipt_list_item.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recipt_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/recipt_register.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/resvtn_click_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/resvtn_click_dialog.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/review_register_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/review_register_dialog.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/reviewitem.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/reviewitem.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -134,7 +97,99 @@
     <favorites_list name="osam-user" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1615" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_review_list.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="627">
+              <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MessagingService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="30" column="71" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+              <folding>
+                <element signature="e#1242#1243#0" expanded="true" />
+                <element signature="e#1297#1298#0" expanded="true" />
+                <element signature="e#1371#1372#0" expanded="true" />
+                <element signature="e#1428#1429#0" expanded="true" />
+                <element signature="e#2165#2166#0" expanded="true" />
+                <element signature="e#2200#2201#0" expanded="true" />
+                <element signature="e#2232#2233#0" expanded="true" />
+                <element signature="e#2262#2263#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="97" column="9" lean-forward="true" selection-start-line="90" selection-start-column="8" selection-end-line="97" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/DownloadImageTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="152" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -147,16 +202,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>200</find>
-      <find>order</find>
-      <find>refreshPrice</find>
-      <find>&lt;view</find>
-      <find>total</find>
-      <find>mipmap</find>
-      <find>km</find>
-      <find>★</find>
-      <find>DELETE</find>
-      <find>idx</find>
       <find>itemCount</find>
       <find>listv</find>
       <find>확인</find>
@@ -177,6 +222,16 @@
       <find>view</find>
       <find>oval</find>
       <find>viewGr</find>
+      <find>host_i</find>
+      <find>drop</find>
+      <find>drop_im</find>
+      <find>닫기</find>
+      <find>ell</find>
+      <find>addr</find>
+      <find>/cat</find>
+      <find>Oval</find>
+      <find>12</find>
+      <find>zoom</find>
     </findStrings>
     <replaceStrings>
       <replace>https://be-light.store</replace>
@@ -200,23 +255,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_minus.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_mgt.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundedview_slim.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_review_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/myreviewitem.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/InfoWindowData.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_qrcode.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/QRCodeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CaptureActivityAnyOrientation.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ListViewAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/hostitem.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptListItem.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListItem.java" />
         <option value="$PROJECT_DIR$/app/google-services.json" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/RegisterActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -225,32 +273,39 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptMgtActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MySharedPreferences.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/PathUtil.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MessagingService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/reviewitem.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/review_register_dialog.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/RequestHttpURLConnection.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/SplashActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_edit.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptEditActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_faq.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MapActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnRegisterDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundedview_nopadding.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/recipt.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/recipt_list_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/recipt_register.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnClickDialog.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundedview_gray.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_info_window.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/reviewitem.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/InfoWindowData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnRegisterDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnClickDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_mgt.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/resvtn_click_dialog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_info_window.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/hostitem.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/review_register_dialog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/recipt_register.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_edit.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_review_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/DownloadImageTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListItem.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java" />
       </list>
     </option>
   </component>
@@ -267,6 +322,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,18 +366,6 @@
               <item name="android-be-light-user" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="android-be-light-user" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="font" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="android-be-light-user" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
@@ -330,11 +374,14 @@
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
+            <path>
+              <item name="android-be-light-user" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -343,7 +390,7 @@
     <property name="DEBUGGABLE_PROCESS" value="com.example.a1117p.osam.user" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="4785e7b5" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-10-23T17:54:45.183Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-10-24T01:46:25.505Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -355,12 +402,8 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\res\drawable" />
-      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\res\font" />
-      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\res\layout" />
-      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\java\com\example\a1117p\osam\user" />
-      <recent name="C:\Users\CafeAlle\Desktop\PortableGit\android-be-light-user\app\src\main\res\drawable" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\W22002\Downloads\android-be-light-user\app\src\main\res\drawable" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.a1117p.osam.user" />
@@ -371,8 +414,12 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.a1117p.osam.user" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\W22002\Downloads\android-be-light-user\app\src\main\res\drawable" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\res\drawable" />
+      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\res\font" />
+      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\res\layout" />
+      <recent name="C:\Users\Admin\Downloads\android-be-light-user\app\src\main\java\com\example\a1117p\osam\user" />
+      <recent name="C:\Users\CafeAlle\Desktop\PortableGit\android-be-light-user\app\src\main\res\drawable" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -498,7 +545,7 @@
     <frame x="960" y="0" width="960" height="1040" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49921012" visible="true" weight="0.30444443" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49921012" visible="true" weight="0.2988889" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.5007899" side_tool="true" weight="0.20847651" />
       <window_info id="Build Variants" order="4" sideWeight="0.5007899" side_tool="true" weight="0.20847651" />
@@ -541,13 +588,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java</url>
-          <line>77</line>
+          <line>78</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java</url>
-          <line>170</line>
+          <line>175</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
@@ -601,7 +648,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java</url>
-          <line>166</line>
+          <line>171</line>
           <properties />
           <option name="timeStamp" value="56" />
         </line-breakpoint>
@@ -612,65 +659,33 @@
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java</url>
-          <line>64</line>
-          <properties />
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListItem.java</url>
           <line>12</line>
           <properties />
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java</url>
-          <line>147</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnRegisterDialog.java</url>
+          <line>102</line>
           <properties />
-          <option name="timeStamp" value="61" />
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnClickDialog.java</url>
-          <line>155</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/DownloadImageTask.java</url>
+          <line>27</line>
           <properties />
-          <option name="timeStamp" value="62" />
+          <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnClickDialog.java</url>
-          <line>113</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/DownloadImageTask.java</url>
+          <line>44</line>
           <properties />
-          <option name="timeStamp" value="63" />
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CaptureActivityAnyOrientation.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_capture.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/QRCodeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="50" />
-          <folding>
-            <element signature="e#4236#4237#0" expanded="true" />
-            <element signature="e#4269#4270#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../google-services.json" />
     <entry file="file://$PROJECT_DIR$/app/google-services.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-112">
@@ -681,38 +696,8 @@
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="31" column="66" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_mgt.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="45" column="34" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="34" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/captures/com.example.a1117p.osam.user_2019.10.23_15.05.li">
       <provider selected="true" editor-type-id="capture-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-28/android.jar!/android/os/Looper.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -730,68 +715,6 @@
             <element signature="e#480#481#0" expanded="true" />
             <element signature="e#688#689#0" expanded="true" />
             <element signature="e#777#778#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="49" column="6" lean-forward="true" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MessagingService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptMgtActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="81" column="29" lean-forward="true" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="64" column="19" lean-forward="true" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
-          <folding>
-            <element signature="e#2184#2844#0" expanded="true" />
-            <element signature="e#2594#2818#0" expanded="true" />
-            <element signature="e#2817#2818#0" expanded="true" />
-            <element signature="e#2843#2844#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="160" column="21" lean-forward="true" selection-start-line="160" selection-start-column="21" selection-end-line="160" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#1242#1243#0" expanded="true" />
-            <element signature="e#1297#1298#0" expanded="true" />
-            <element signature="e#1371#1372#0" expanded="true" />
-            <element signature="e#1428#1429#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -816,21 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145">
-          <caret line="120" column="29" selection-start-line="120" selection-start-column="29" selection-end-line="120" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/RequestHttpURLConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -845,78 +753,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_edit.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="21" column="30" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptEditActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="133" column="19" lean-forward="true" selection-start-line="133" selection-start-column="19" selection-end-line="133" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/InfoWindowData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_faq.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="160" column="30" selection-start-line="160" selection-start-column="30" selection-end-line="160" selection-end-column="30" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnRegisterDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hostitem.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="74" column="12" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="12" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recipt.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="177" column="32" selection-start-line="177" selection-start-column="32" selection-end-line="177" selection-end-column="32" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recipt_list_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="101" column="27" selection-start-line="101" selection-start-column="27" selection-end-line="101" selection-end-column="27" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recipt.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recipt_list_item.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ListViewAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -932,115 +786,21 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/myreviewitem.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/review_register_dialog.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/reviewitem.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="38" column="39" lean-forward="true" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-28/android.jar!/android/app/Dialog.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recipt_register.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_info_window.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/resvtn_click_dialog.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="74" column="23" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="177" selection-start-line="177" selection-end-line="177" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4436#11516#0" expanded="true" />
-            <element signature="e#5040#5041#0" expanded="true" />
-            <element signature="e#5099#5100#0" expanded="true" />
-            <element signature="e#5195#5196#0" expanded="true" />
-            <element signature="e#5254#5255#0" expanded="true" />
-            <element signature="e#6308#11380#0" expanded="true" />
-            <element signature="e#6655#11329#0" expanded="true" />
-            <element signature="e#9199#10744#0" expanded="true" />
-            <element signature="e#9396#10654#0" expanded="true" />
-            <element signature="e#9781#10548#0" expanded="true" />
-            <element signature="e#10547#10548#0" expanded="true" />
-            <element signature="e#10653#10654#0" expanded="true" />
-            <element signature="e#10743#10744#0" expanded="true" />
-            <element signature="e#10875#11223#0" expanded="true" />
-            <element signature="e#11222#11223#0" expanded="true" />
-            <element signature="e#11328#11329#0" expanded="true" />
-            <element signature="e#11379#11380#0" expanded="true" />
-            <element signature="e#11515#11516#0" expanded="true" />
-            <element signature="e#11702#11868#0" expanded="true" />
-            <element signature="e#11867#11868#0" expanded="true" />
-            <element signature="e#11923#12088#0" expanded="true" />
-            <element signature="e#12087#12088#0" expanded="true" />
-            <element signature="e#12146#12377#0" expanded="true" />
-            <element signature="e#12376#12377#0" expanded="true" />
-            <element signature="e#12438#12671#0" expanded="true" />
-            <element signature="e#12670#12671#0" expanded="true" />
-            <element signature="e#12733#12967#0" expanded="true" />
-            <element signature="e#12966#12967#0" expanded="true" />
-            <element signature="e#13023#13472#0" expanded="true" />
-            <element signature="e#13471#13472#0" expanded="true" />
-            <element signature="e#13525#13751#0" expanded="true" />
-            <element signature="e#13750#13751#0" expanded="true" />
-            <element signature="e#13807#14084#0" expanded="true" />
-            <element signature="e#14083#14084#0" expanded="true" />
-            <element signature="e#14138#14338#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14491#14750#0" expanded="true" />
-            <element signature="e#14749#14750#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="37" column="2" selection-start-line="37" selection-start-column="2" selection-end-line="42" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1058,10 +818,244 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/review_register_dialog.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnRegisterDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="116" column="58" selection-start-line="116" selection-start-column="58" selection-end-line="116" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/InfoWindowData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="56" lean-forward="true" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptEditActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ResvtnClickDialog.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="177" column="71" lean-forward="true" selection-start-line="177" selection-start-column="71" selection-end-line="177" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/reservation.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_edit.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/resvtn_click_dialog.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="40" column="50" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_info_window.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="53" column="23" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReciptMgtActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recipt_mgt.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="316" column="49" selection-start-line="316" selection-start-column="49" selection-end-line="316" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4546#4973#0" expanded="true" />
+            <element signature="e#4972#4973#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1387">
+          <caret line="310" column="52" selection-start-line="310" selection-start-column="52" selection-end-line="310" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="36" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/recipt_register.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="273" column="16" selection-start-line="273" selection-start-column="16" selection-end-line="273" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1615" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_review_list.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/DownloadImageTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/CustomInfoWindowFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="152" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="97" column="9" lean-forward="true" selection-start-line="90" selection-start-column="8" selection-end-line="97" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MyReviewListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+          <folding>
+            <element signature="e#1242#1243#0" expanded="true" />
+            <element signature="e#1297#1298#0" expanded="true" />
+            <element signature="e#1371#1372#0" expanded="true" />
+            <element signature="e#1428#1429#0" expanded="true" />
+            <element signature="e#2165#2166#0" expanded="true" />
+            <element signature="e#2200#2201#0" expanded="true" />
+            <element signature="e#2232#2233#0" expanded="true" />
+            <element signature="e#2262#2263#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="50" column="54" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
+          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/ReviewRegisterDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/a1117p/osam/user/MessagingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="30" column="71" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="71" />
         </state>
       </provider>
     </entry>

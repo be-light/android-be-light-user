@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class MyReviewListItem  implements Parcelable {
     private String userId,review,reviewDate;
-    private long reviewScore;
+    private long reviewScore,reviewNumber,hostIdx;
     MyReviewListItem(JSONObject object){
         userId = String.valueOf(object.get("userId"));
         review = (String)object.get("review");
@@ -23,6 +23,8 @@ public class MyReviewListItem  implements Parcelable {
             e.printStackTrace();
         }
         reviewScore = (long)object.get("reviewScore");
+        reviewNumber = (long)object.get("reviewNumber");
+        hostIdx = (long)object.get("hostIdx");
     }
 
     protected MyReviewListItem(Parcel in) {
@@ -74,5 +76,13 @@ public class MyReviewListItem  implements Parcelable {
         parcel.writeString(review);
         parcel.writeString(reviewDate);
         parcel.writeLong(reviewScore);
+    }
+
+    public long getReviewNumber() {
+        return reviewNumber;
+    }
+
+    public long getHostIdx() {
+        return hostIdx;
     }
 }

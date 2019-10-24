@@ -17,8 +17,10 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,7 +40,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -82,6 +83,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //findViewById(R.id.bottom).startAnimation(AnimationUtils.loadAnimation(this, R.anim.down_anim_fast));
     }
 
+    void setProfileImg() {
+        if (MySharedPreferences.getProfileImgPath() != null) {
+            File imgFile = new File(MySharedPreferences.getProfileImgPath());
+
+            if (imgFile.exists()) {
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                profile.setImageBitmap(myBitmap);
+            }
+        }
+        OvalProfile();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        setProfileImg();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,17 +120,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         profile = findViewById(R.id.profile_img);
-        if (MySharedPreferences.getProfileImgPath() != null) {
-            File imgFile = new File(MySharedPreferences.getProfileImgPath());
-
-            if (imgFile.exists()) {
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                profile.setImageBitmap(myBitmap);
-            }
-        }
-        OvalProfile();
         ((TextView) findViewById(R.id.name)).setText(RequestHttpURLConnection.name);
         ((TextView) findViewById(R.id.email)).setText(RequestHttpURLConnection.email);
+
+        final EditText editText = findViewById(R.id.search_edit);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {// 검색 동작
+                    findViewById(R.id.search_btn).performClick();
+                } else {// 기본 엔터키 동작
+                    return false;
+                }
+                return true;
+            }
+        });
+
+
         findViewById(R.id.search_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,9 +160,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 InputMethodManager imm;
                 imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(findViewById(R.id.search_edit).getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
-                String search = ((EditText) findViewById(R.id.search_edit)).getText().toString();
+                String search = editText.getText().toString();
                 Geocoder geocoder = new Geocoder(MapActivity.this);
                 try {
                     List<Address> addressList = geocoder.getFromLocationName(search, 1);
@@ -170,7 +196,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     try {
                                         JSONParser jsonParser = new JSONParser();
                                         JSONArray jsonArr = (JSONArray) jsonParser.parse(html);
-                                        if(0==jsonArr.size()){
+                                        if (0 == jsonArr.size()) {
                                             Toast.makeText(MapActivity.this, "검색결과없음", Toast.LENGTH_LONG).show();
                                             return;
                                         }
@@ -186,20 +212,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(0, 120);
                                             final InfoWindow infoWindow = new InfoWindow(marker, markerSpec, new CustomInfoWindowFragment(data, MapActivity.this));
                                             // Shows the InfoWindow or hides it if it is already opened.
-                                            manager.toggle(infoWindow, true);
+                                            //  manager.toggle(infoWindow, true);
                                             hashmap.put(marker, infoWindow);
 
 
                                         }
-                                       new Thread(new Runnable() {
+                                        new Thread(new Runnable() {
                                             @Override
                                             public void run() {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
+                                                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-                                                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,  12.8f));
+                                                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f));
                                                         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                                             @Override
                                                             public boolean onMarkerClick(Marker marker) {
@@ -288,6 +314,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Toast.makeText(MapActivity.this, "로그아웃되었습니다.", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(MapActivity.this, SplashActivity.class);
                 i.putExtra("needLoading", false);
+                MySharedPreferences.removeIdPw();
                 startActivity(i);
                 finish();
             }

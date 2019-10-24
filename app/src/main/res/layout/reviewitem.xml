@@ -16,7 +16,7 @@
             android:id="@+id/profile_img"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/cat"
+            android:src="@drawable/hostdefault"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

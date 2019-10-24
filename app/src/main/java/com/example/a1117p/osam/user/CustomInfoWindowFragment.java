@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,16 +79,20 @@ public class CustomInfoWindowFragment extends Fragment {
                                 JSONParser jsonParser = new JSONParser();
                                 JSONArray jsonArray = (JSONArray) jsonParser.parse(html);
                                 final ReviewListAdapter adapter = new ReviewListAdapter(jsonArray);
-                                if (adapter.getCount() == 0) {
-                                    ((Button) v).setText("리뷰");
-                                    isReview = true;
-                                }
+
                                 context.runOnUiThread(new Runnable() {
 
                                     @Override
                                     public void run() {
 
                                         Pdialog.dismiss();
+                                        if (adapter.getCount() == 0) {
+                                            ((Button) v).setText("리뷰");
+                                            Toast.makeText(context, "리뷰가 없습니다.", Toast.LENGTH_LONG).show();
+
+                                            isReview = true;
+                                            return;
+                                        }
                                         listView.setAdapter(adapter);
                                         ((Button) v).setText("닫기");
                                     }
@@ -142,5 +147,9 @@ public class CustomInfoWindowFragment extends Fragment {
         ((TextView) view.findViewById(R.id.host_addr)).setText(data.hostAddress);
         ((TextView) view.findViewById(R.id.term)).setText(data.term);
         ((TextView) view.findViewById(R.id.hostIntro)).setText(data.hostIntro);
+        if (data.hostImage != null && !data.hostImage.equals("")) {
+            new DownloadImageTask((ImageView) view.findViewById(R.id.host_img), false)
+                    .execute(data.hostImage);
+        }
     }
 }

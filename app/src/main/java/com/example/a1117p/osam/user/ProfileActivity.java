@@ -34,6 +34,7 @@ import java.util.regex.Pattern;
 public class ProfileActivity extends AppCompatActivity {
     File file = null;
     ImageView profile;
+    String path = null;
 
     void OvalProfile() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -130,6 +131,10 @@ public class ProfileActivity extends AppCompatActivity {
                 } else if (address.equals("")) {
                     Toast.makeText(ProfileActivity.this, "주소를 입력하세요", Toast.LENGTH_LONG).show();
                     return;
+                }else if(file==null){
+
+                    Toast.makeText(ProfileActivity.this, "프로필사진을 변경해주세요", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 final HashMap<String, String> params = new HashMap<>();
 
@@ -174,6 +179,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     JSONObject object = (JSONObject) parser.parse(html);
                                     Long status = (Long) object.get("status");
                                     if (status == 200) {
+                                        MySharedPreferences.setProfileImgPath(path);
                                         Toast.makeText(ProfileActivity.this, "프로필을 수정하였습니다.", Toast.LENGTH_LONG).show();
                                         finish();
                                     } else {
@@ -200,14 +206,12 @@ public class ProfileActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 Uri uri = data.getData();
-                String path = null;
                 try {
                     path = PathUtil.getPath(this,uri);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
                 file = new File(path);
-                MySharedPreferences.setProfileImgPath(path);
                 profile.setImageURI(uri);
                 OvalProfile();
             }
